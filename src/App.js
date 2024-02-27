@@ -17,7 +17,10 @@ function App() {
           <Route path="/" element={<Dashboard />} />
           <Route path="/counselor" element={<TableCouncellor />} />
           <Route path="/counselor/:id" element={<CounselorDetailsPage />} />
-          <Route path="/counselee" element={<CounseleeTable />} />
+          <Route
+            path="/counselee"
+            element={<CounseleeTable stylec={"ml-[20vw]"} />}
+          />
         </Routes>
       </BrowserRouter>
     </div>

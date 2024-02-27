@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import SessionTable from "./SessionTable";
+import CounseleeTable from "./CounceleeTable";
 
 const CounselorDetailsPage = () => {
   const [activeTab, setActiveTab] = useState("counselee"); // Default active tab is 'counselee'
@@ -62,8 +64,16 @@ const CounselorDetailsPage = () => {
 };
 
 // Placeholder components for each tab
-const CounseleeTab = () => <div>Counselee Tab Content</div>;
-const SessionsTab = () => <div>Sessions Tab Content</div>;
+const CounseleeTab = () => (
+  <div>
+    <CounseleeTable />
+  </div>
+);
+const SessionsTab = () => (
+  <div>
+    <SessionTable />
+  </div>
+);
 const ActivitiesTab = () => <div>Activities Tab Content</div>;
 const AnalyticsTab = () => <div>Analytics Tab Content</div>;
 

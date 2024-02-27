@@ -1,6 +1,6 @@
 import React from "react";
 
-const CounseleeTable = () => {
+const CounseleeTable = ({ stylec }) => {
   const data = [
     {
       id: 1,
@@ -125,7 +125,7 @@ const CounseleeTable = () => {
   ];
 
   return (
-    <div className=" ml-[20vw]">
+    <div className={`${stylec}`}>
       <h1 className="p-10 font-semibold text-2xl">Counselee</h1>
       <div className="overflow-x-auto">
         <table className="min-w-full table-auto divide-y divide-gray-200">
