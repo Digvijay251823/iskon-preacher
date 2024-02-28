@@ -168,11 +168,10 @@ export default Sessions;
 
 function CreateSession({ isOpen, onClose }) {
   const { state } = useMyContext();
-  const [isOpenSelection, setIsOpenSelection] = useState(false);
 
   const [FIRSTNAME, setFirstName] = useState("");
   const [LASTNAME, setLastName] = useState("");
-  const [WANUMBER, setWaNumber] = useState("");
+  const [COURSE, setCourse] = useState("");
   const [CONTACTNUMBER, setContactNumber] = useState("");
   const [GENDER, setGender] = useState("");
   const [DOB, setDob] = useState("");
@@ -213,15 +212,25 @@ function CreateSession({ isOpen, onClose }) {
           <div className="lg:w-[500px] w-[90vw]">
             <form action="" className="PX-5 flex flex-col gap-3">
               <div className="flex flex-col gap-1 w-full">
-                <label htmlFor="contactNumber">SESSIONS</label>
+                <label className="font-semibold" htmlFor="contactNumber">
+                  SELECT COURSE
+                </label>
                 <MenuIconAndDropDown
-                  isSelectionOpen={isOpenSelection}
-                  toggleSelection={(value) => setIsOpenSelection(value)}
+                  setSelected={(value) => setGender(value)}
+                />
+              </div>
+              <div className="flex flex-col gap-1 w-full">
+                <label className="font-semibold" htmlFor="contactNumber">
+                  SELECT SESSIONS
+                </label>
+                <MenuIconAndDropDown
                   setSelected={(value) => setGender(value)}
                 />
               </div>
               <div className="flex flex-col gap-1">
-                <label htmlFor="firstName">SESSION NAME</label>
+                <label className="font-semibold" htmlFor="firstName">
+                  SESSION NAME
+                </label>
                 <input
                   type="text"
                   name="sessionName"
@@ -236,7 +245,9 @@ function CreateSession({ isOpen, onClose }) {
                 />
               </div>
               <div className="flex flex-col gap-1">
-                <label htmlFor="lastName">DESCRIPTION</label>
+                <label className="font-semibold" htmlFor="lastName">
+                  DESCRIPTION
+                </label>
                 <textarea
                   name="description"
                   className={`px-4 py-1.5 text-lg border rounded-xl ${
@@ -252,7 +263,9 @@ function CreateSession({ isOpen, onClose }) {
 
               <div className="flex items-center justify-between">
                 <div className="flex flex-col gap-1">
-                  <label htmlFor="contactNumber">SCHEDULE DATE</label>
+                  <label className="font-semibold" htmlFor="contactNumber">
+                    SCHEDULE DATE
+                  </label>
                   <DatePicker
                     onChange={setDob}
                     value={DOB}
@@ -272,11 +285,8 @@ function CreateSession({ isOpen, onClose }) {
   );
 }
 
-function MenuIconAndDropDown({
-  isSelectionOpen,
-  toggleSelection,
-  setSelected,
-}) {
+function MenuIconAndDropDown({ setSelected }) {
+  const [isSelectionOpen, toggleSelection] = useState(false);
   const { state } = useMyContext();
   const menuRef = useRef();
   const [selectedOption, setSelectedOption] = useState("");

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { MdScanner } from "react-icons/md";
 import { BsQrCodeScan } from "react-icons/bs";
 import { FaLink } from "react-icons/fa";
 import { useMyContext } from "../store/context";
