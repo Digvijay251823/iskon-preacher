@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useMyContext } from "../../store/context";
 import { FiEdit, FiPlus, FiTrash } from "react-icons/fi";
+import Modal from "../components/Modal";
+import { MdKeyboardArrowDown } from "react-icons/md";
+import DatePicker from "react-date-picker";
+import { RxCross1 } from "react-icons/rx";
 
 const sessions = [
   {
@@ -64,6 +68,7 @@ const sessions = [
 
 function Sessions() {
   const { state } = useMyContext();
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="flex flex-col items-center">
       <div className="flex items-center w-full lg:px-10 px-4 pt-10 justify-between">
@@ -75,6 +80,7 @@ function Sessions() {
                 ? "border-2 border-blue-300 rounded-xl shadow-md active:shadow-sm"
                 : "bg-stone-800 border border-stone-700 rounded-xl transition-all duration-300 active:scale-95"
             }`}
+            onClick={() => setIsOpen(true)}
           >
             <FiPlus />
             Sessions
@@ -153,8 +159,189 @@ function Sessions() {
           </tbody>
         </table>
       </div>
+      <CreateSession isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </div>
   );
 }
 
 export default Sessions;
+
+function CreateSession({ isOpen, onClose }) {
+  const { state } = useMyContext();
+  const [isOpenSelection, setIsOpenSelection] = useState(false);
+
+  const [FIRSTNAME, setFirstName] = useState("");
+  const [LASTNAME, setLastName] = useState("");
+  const [WANUMBER, setWaNumber] = useState("");
+  const [CONTACTNUMBER, setContactNumber] = useState("");
+  const [GENDER, setGender] = useState("");
+  const [DOB, setDob] = useState("");
+
+  return (
+    <Modal isOpen={isOpen} onClose={onClose}>
+      <button
+        className={`absolute md:right-10 right-5 flex items-center gap-2 border top-5 p-2 rounded-xl ${
+          state.Theme.Theme === "light"
+            ? "bg-white border-gray-300"
+            : "bg-stone-700 border-stone-600"
+        }`}
+        onClick={onClose}
+      >
+        <RxCross1 />
+        close
+      </button>
+      <div
+        className={`flex items-center justify-center lg:gap-5 ${
+          state.Theme.Theme === "light"
+            ? "bg-white border-gray-300"
+            : "bg-stone-900"
+        } min-h-screen w-screen`}
+      >
+        <div className="lg:block hidden">
+          <img
+            src={require("../../assets/sessionsSchedule.png")}
+            height={400}
+            className="h-[400px]"
+            alt="addcounsellee"
+          />
+        </div>
+        <div
+          className={`rounded-3xl items-center md:p-5 p-3 ${
+            state.Theme.Theme === "light" ? "bg-white" : "bg-stone-800"
+          }`}
+        >
+          <div className="lg:w-[500px] w-[90vw]">
+            <form action="" className="PX-5 flex flex-col gap-3">
+              <div className="flex flex-col gap-1 w-full">
+                <label htmlFor="contactNumber">SESSIONS</label>
+                <MenuIconAndDropDown
+                  isSelectionOpen={isOpenSelection}
+                  toggleSelection={(value) => setIsOpenSelection(value)}
+                  setSelected={(value) => setGender(value)}
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <label htmlFor="firstName">SESSION NAME</label>
+                <input
+                  type="text"
+                  name="sessionName"
+                  className={`px-4 py-1.5 text-lg border rounded-xl ${
+                    state.Theme.Theme === "light"
+                      ? "bg-white border-gray-300"
+                      : "bg-stone-900 border-stone-700"
+                  }`}
+                  placeholder="session name"
+                  value={FIRSTNAME}
+                  onChange={(e) => setFirstName(e.target.value)}
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <label htmlFor="lastName">DESCRIPTION</label>
+                <textarea
+                  name="description"
+                  className={`px-4 py-1.5 text-lg border rounded-xl ${
+                    state.Theme.Theme === "light"
+                      ? "bg-white border-gray-300"
+                      : "bg-stone-900 border-stone-700"
+                  }`}
+                  placeholder="Doe"
+                  value={LASTNAME}
+                  onChange={(e) => setLastName(e.target.value)}
+                />
+              </div>
+
+              <div className="flex items-center justify-between">
+                <div className="flex flex-col gap-1">
+                  <label htmlFor="contactNumber">SCHEDULE DATE</label>
+                  <DatePicker
+                    onChange={setDob}
+                    value={DOB}
+                    className={`px-4 py-1.5 text-lg border rounded-xl ${
+                      state.Theme.Theme === "light"
+                        ? "bg-white border-gray-300"
+                        : "bg-stone-900 border-stone-700"
+                    }`}
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </Modal>
+  );
+}
+
+function MenuIconAndDropDown({
+  isSelectionOpen,
+  toggleSelection,
+  setSelected,
+}) {
+  const { state } = useMyContext();
+  const menuRef = useRef();
+  const [selectedOption, setSelectedOption] = useState("");
+
+  // Attach click outside listener
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        toggleSelection(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [toggleSelection]);
+  return (
+    <div className="relative inline-block text-left" ref={menuRef}>
+      <button
+        type="button"
+        className={`flex items-center justify-between border px-2 py-2 rounded-xl gap-5 w-full ${
+          state.Theme.Theme === "light"
+            ? "border-gray-300"
+            : "border-stone-800 bg-stone-900"
+        }`}
+        id="options-menu"
+        aria-haspopup="true"
+        aria-expanded="true"
+        onClick={() => toggleSelection(!isSelectionOpen)}
+      >
+        {selectedOption === "" ? "Select" : selectedOption}
+        <MdKeyboardArrowDown />
+      </button>
+      {isSelectionOpen && (
+        <div
+          className={`origin-top-left absolute left-0 mt-2 w-full rounded-lg shadow-lg ${
+            state.Theme.Theme === "light"
+              ? "bg-white border-gray-300"
+              : "bg-stone-900 border border-stone-800"
+          } ring-1 ring-black ring-opacity-5 focus:outline-none py-1 px-1`}
+          role="menu"
+          aria-orientation="vertical"
+          aria-labelledby="options-menu"
+        >
+          <ul className="flex flex-col gap-3" role="none">
+            {sessions?.map((session, index) => (
+              <li
+                key={index}
+                onClick={() => {
+                  setSelectedOption(session.sessionName);
+                  setSelected(session.sessionName);
+                  toggleSelection(false);
+                }}
+                className={`px-2 py-1.5 rounded-lg ${
+                  state.Theme.Theme === "light"
+                    ? "hover:bg-gray-100"
+                    : "hover:bg-stone-700"
+                }`}
+              >
+                {session.sessionName}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
+}

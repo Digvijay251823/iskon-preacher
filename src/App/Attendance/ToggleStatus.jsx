@@ -12,12 +12,17 @@ function ToggleStatus({ status }) {
   return (
     <div>
       {isApproved ? (
-        <button>
+        <button className="flex items-center gap-2">
           <IoCheckmarkDoneCircleSharp className="text-xl text-green-500" />
+          APPROVED
         </button>
       ) : (
-        <button onClick={() => setIsApproved(true)}>
+        <button
+          onClick={() => setIsApproved(true)}
+          className="flex items-center gap-2"
+        >
           <GoClockFill className="text-md text-yellow-500" />
+          PENDING
         </button>
       )}
     </div>
