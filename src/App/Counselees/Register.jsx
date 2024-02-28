@@ -1,11 +1,9 @@
 const { useState, useRef, useEffect } = require("react");
 const { useMyContext } = require("../../store/context");
-const { default: Modal } = require("../components/Modal");
-const { RxCross1 } = require("react-icons/rx");
 const { MdKeyboardArrowDown } = require("react-icons/md");
 const { default: DatePicker } = require("react-date-picker");
 
-function AddCounselee({ isOpen, onClose }) {
+function RegisterCounselee({ isOpen, onClose }) {
   const { state } = useMyContext();
   const [isOpenSelection, setIsOpenSelection] = useState(false);
 
@@ -17,14 +15,17 @@ function AddCounselee({ isOpen, onClose }) {
   const [DOB, setDob] = useState("");
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
-      <div
-        className={`flex items-center justify-center lg:gap-5 ${
-          state.Theme.Theme === "light"
-            ? "bg-white border-gray-300"
-            : "bg-stone-900"
-        } min-h-screen w-screen`}
-      >
+    <div
+      className={`flex flex-col items-center justify-center lg:gap-5 ${
+        state.Theme.Theme === "light"
+          ? "bg-white border-gray-300"
+          : "bg-stone-900"
+      } min-h-screen w-screen`}
+    >
+      <h1 className="text-xl mb-5 text-red-500 font-semibold">
+        Looks like you are not register please register
+      </h1>
+      <div className="flex items-center">
         <div className="lg:block hidden">
           <img
             src={require("../../assets/counselle.png")}
@@ -41,7 +42,9 @@ function AddCounselee({ isOpen, onClose }) {
           <div className="lg:w-[500px]">
             <form action="" className="PX-5 flex flex-col gap-3">
               <div className="flex flex-col gap-1">
-                <label htmlFor="firstName">FIRST NAME</label>
+                <label className="font-semibold" htmlFor="firstName">
+                  FIRST NAME
+                </label>
                 <input
                   type="text"
                   name="firstName"
@@ -56,7 +59,9 @@ function AddCounselee({ isOpen, onClose }) {
                 />
               </div>
               <div className="flex flex-col gap-1">
-                <label htmlFor="lastName">LAST NAME</label>
+                <label className="font-semibold" htmlFor="lastName">
+                  LAST NAME
+                </label>
                 <input
                   type="text"
                   name="lastName"
@@ -71,7 +76,9 @@ function AddCounselee({ isOpen, onClose }) {
                 />
               </div>
               <div className="flex flex-col gap-1">
-                <label htmlFor="waNumber">WHATSAPP NUMBER</label>
+                <label className="font-semibold" htmlFor="waNumber">
+                  WHATSAPP NUMBER
+                </label>
                 <input
                   type="tel"
                   name="waNumber"
@@ -86,7 +93,9 @@ function AddCounselee({ isOpen, onClose }) {
                 />
               </div>
               <div className="flex flex-col gap-1">
-                <label htmlFor="contactNumber">CONTACT NUMBER</label>
+                <label className="font-semibold" htmlFor="contactNumber">
+                  CONTACT NUMBER
+                </label>
                 <input
                   type="tel"
                   name="contactNumber"
@@ -102,7 +111,9 @@ function AddCounselee({ isOpen, onClose }) {
               </div>
               <div className="flex items-center justify-between">
                 <div className="flex flex-col gap-1">
-                  <label htmlFor="contactNumber">GENDER</label>
+                  <label className="font-semibold" htmlFor="contactNumber">
+                    GENDER
+                  </label>
                   <MenuIconAndDropDown
                     isSelectionOpen={isOpenSelection}
                     toggleSelection={(value) => setIsOpenSelection(value)}
@@ -110,7 +121,9 @@ function AddCounselee({ isOpen, onClose }) {
                   />
                 </div>
                 <div className="flex flex-col gap-1">
-                  <label htmlFor="contactNumber">DATE OF BIRTH</label>
+                  <label className="font-semibold" htmlFor="contactNumber">
+                    DATE OF BIRTH
+                  </label>
                   <DatePicker
                     onChange={setDob}
                     value={DOB}
@@ -126,9 +139,11 @@ function AddCounselee({ isOpen, onClose }) {
           </div>
         </div>
       </div>
-    </Modal>
+    </div>
   );
 }
+
+export default RegisterCounselee;
 
 function MenuIconAndDropDown({
   isSelectionOpen,

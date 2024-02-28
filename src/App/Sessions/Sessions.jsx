@@ -300,7 +300,7 @@ function MenuIconAndDropDown({
         className={`flex items-center justify-between border px-2 py-2 rounded-xl gap-5 w-full ${
           state.Theme.Theme === "light"
             ? "border-gray-300"
-            : "border-stone-800 bg-stone-900"
+            : "border-stone-700 bg-stone-900"
         }`}
         id="options-menu"
         aria-haspopup="true"
@@ -312,10 +312,10 @@ function MenuIconAndDropDown({
       </button>
       {isSelectionOpen && (
         <div
-          className={`origin-top-left absolute left-0 mt-2 w-full rounded-lg shadow-lg ${
+          className={`origin-top-left absolute left-0 mt-2 w-full rounded-lg shadow-lg z-[1000] ${
             state.Theme.Theme === "light"
               ? "bg-white border-gray-300"
-              : "bg-stone-900 border border-stone-800"
+              : "bg-stone-900 border border-stone-700"
           } ring-1 ring-black ring-opacity-5 focus:outline-none py-1 px-1`}
           role="menu"
           aria-orientation="vertical"

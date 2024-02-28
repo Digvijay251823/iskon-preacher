@@ -115,10 +115,17 @@ function Attendance() {
   return (
     <div className="flex flex-col items-center">
       <div className="flex items-center w-full lg:px-10 px-4 pt-10 justify-between">
-        <h1 className="font-semibold text-2xl">Sessions</h1>
+        <h1 className="font-semibold text-2xl">Attendance</h1>
       </div>
       <div
-        className={` overflow-x-auto my-10 w-[90vw] border rounded-lg ${
+        className={`border mt-4 px-4 py-2 rounded-xl ${
+          state.Theme.Theme === "light" ? "border-gray-300" : "border-stone-700"
+        }`}
+      >
+        Pending <i className="text-red-500">10</i>
+      </div>
+      <div
+        className={` overflow-x-auto my-6 w-[90vw] border rounded-lg ${
           state.Theme.Theme === "light"
             ? "border-stone-200"
             : "border-stone-800"

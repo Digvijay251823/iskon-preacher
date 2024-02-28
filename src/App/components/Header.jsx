@@ -18,7 +18,15 @@ function Header() {
   };
 
   return (
-    <header>
+    <header
+      className={
+        pathname.startsWith("/register") ||
+        pathname.startsWith("/attendance") ||
+        pathname.startsWith("/rsvp")
+          ? "hidden"
+          : "block"
+      }
+    >
       <div
         className={`px-5 flex items-center justify-between border-b ${
           state.Theme.Theme === "light"

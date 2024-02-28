@@ -9,6 +9,9 @@ import Sessions from "./App/Sessions/Sessions";
 import Attendance from "./App/Attendance/Attendance";
 import Scanner from "./App/Scanner";
 import { useEffect } from "react";
+import RegisterCounselee from "./App/Counselees/Register";
+import AttendanceCounselee from "./App/Counselees/AttendanceCounselee";
+import RSVPCounselee from "./App/Counselees/RSVPCounselee";
 
 function AllRoutes() {
   const { state, dispatch } = useMyContext();
@@ -32,6 +35,9 @@ function AllRoutes() {
         <Route path="/counseler/activities" element={<Activities />} />
         <Route path="/counseler/sessions" element={<Sessions />} />
         <Route path="/counseler/attendance" element={<Attendance />} />
+        <Route path="/register" element={<RegisterCounselee />} />
+        <Route path="/attendance" element={<AttendanceCounselee />} />
+        <Route path="/rsvp" element={<RSVPCounselee />} />
         <Route path="/counseler/scanner" element={<Scanner />} />
       </Routes>
     </div>
