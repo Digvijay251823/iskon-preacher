@@ -1,7 +1,8 @@
-const { useState, useRef, useEffect } = require("react");
-const { useMyContext } = require("../../store/context");
-const { MdKeyboardArrowDown } = require("react-icons/md");
-const { default: DatePicker } = require("react-date-picker");
+import { useState, useRef, useEffect } from "react";
+import { useMyContext } from "../../store/context";
+import { MdKeyboardArrowDown } from "react-icons/md";
+import ReactDatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 function RegisterCounselee({ isOpen, onClose }) {
   const { state } = useMyContext();
@@ -109,7 +110,7 @@ function RegisterCounselee({ isOpen, onClose }) {
                   onChange={(e) => setContactNumber(e.target.value)}
                 />
               </div>
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between gap-5">
                 <div className="flex flex-col gap-1">
                   <label className="font-semibold" htmlFor="contactNumber">
                     GENDER
@@ -124,14 +125,16 @@ function RegisterCounselee({ isOpen, onClose }) {
                   <label className="font-semibold" htmlFor="contactNumber">
                     DATE OF BIRTH
                   </label>
-                  <DatePicker
-                    onChange={setDob}
+                  <ReactDatePicker
+                    onChange={(e) => setDob(e)}
                     value={DOB}
-                    className={`px-4 py-1.5 text-lg border rounded-xl ${
+                    className={`px-4 py-1.5 text-lg border rounded-xl flex items-center ${
                       state.Theme.Theme === "light"
                         ? "bg-white border-gray-300"
                         : "bg-stone-900 border-stone-700"
                     }`}
+                    placeholderText="enter the date"
+                    dateFormat={"dd-mm-yyyy"}
                   />
                 </div>
               </div>

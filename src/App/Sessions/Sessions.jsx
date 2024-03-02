@@ -3,7 +3,8 @@ import { useMyContext } from "../../store/context";
 import { FiEdit, FiPlus, FiTrash } from "react-icons/fi";
 import Modal from "../components/Modal";
 import { MdKeyboardArrowDown } from "react-icons/md";
-import DatePicker from "react-date-picker";
+import ReactDatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import { RxCross1 } from "react-icons/rx";
 
 const sessions = [
@@ -171,8 +172,6 @@ function CreateSession({ isOpen, onClose }) {
 
   const [FIRSTNAME, setFirstName] = useState("");
   const [LASTNAME, setLastName] = useState("");
-  const [COURSE, setCourse] = useState("");
-  const [CONTACTNUMBER, setContactNumber] = useState("");
   const [GENDER, setGender] = useState("");
   const [DOB, setDob] = useState("");
 
@@ -266,7 +265,7 @@ function CreateSession({ isOpen, onClose }) {
                   <label className="font-semibold" htmlFor="contactNumber">
                     SCHEDULE DATE
                   </label>
-                  <DatePicker
+                  <ReactDatePicker
                     onChange={setDob}
                     value={DOB}
                     className={`px-4 py-1.5 text-lg border rounded-xl ${

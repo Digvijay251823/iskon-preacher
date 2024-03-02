@@ -4,9 +4,8 @@ import { useMyContext } from "../../store/context";
 import Modal from "../components/Modal";
 import { RxCross1 } from "react-icons/rx";
 import { MdKeyboardArrowDown } from "react-icons/md";
-import DatePicker from "react-date-picker";
-import "react-date-picker/dist/DatePicker.css";
-import "react-calendar/dist/Calendar.css";
+import ReactDatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const counseleesData = [
   {
@@ -336,7 +335,7 @@ function AddCounselee({ isOpen, onClose }) {
                   onChange={(e) => setContactNumber(e.target.value)}
                 />
               </div>
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between gap-5">
                 <div className="flex flex-col gap-1">
                   <label htmlFor="contactNumber">GENDER</label>
                   <MenuIconAndDropDown
@@ -347,14 +346,15 @@ function AddCounselee({ isOpen, onClose }) {
                 </div>
                 <div className="flex flex-col gap-1">
                   <label htmlFor="contactNumber">DATE OF BIRTH</label>
-                  <DatePicker
-                    onChange={setDob}
+                  <ReactDatePicker
+                    onChange={(e) => setDob(e)}
                     value={DOB}
                     className={`px-4 py-1.5 text-lg border rounded-xl ${
                       state.Theme.Theme === "light"
                         ? "bg-white border-gray-300"
                         : "bg-stone-900 border-stone-700"
                     }`}
+                    placeholderText="select date"
                   />
                 </div>
               </div>

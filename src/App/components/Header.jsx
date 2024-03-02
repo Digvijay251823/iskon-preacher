@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useMyContext } from "../../store/context";
 import { IoMdMoon } from "react-icons/io";
 import { FiSun } from "react-icons/fi";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import {
   MdOutlineKeyboardArrowDown,
   MdOutlineQrCodeScanner,
@@ -20,9 +20,11 @@ function Header() {
   return (
     <header
       className={
+        pathname.startsWith(`/sadhana`) ||
         pathname.startsWith("/register") ||
-        pathname.startsWith("/attendance") ||
-        pathname.startsWith("/rsvp")
+        pathname.startsWith("/activity") ||
+        pathname.startsWith(`/attendance`) ||
+        pathname.startsWith(`/rsvp`)
           ? "hidden"
           : "block"
       }
@@ -105,6 +107,20 @@ function Header() {
                 `}
               >
                 Attendance
+              </li>
+            </Link>
+            <Link to={"/counseler/sadhana"}>
+              <li
+                className={`px-4 py-5 text-lg transition-colors duration-500 
+                ${
+                  pathname === "/counseler/sadhana" ||
+                  pathname === "/counseler/configure"
+                    ? "border-b border-b-purple-700 text-purple-700"
+                    : ""
+                }
+                `}
+              >
+                Sadhana
               </li>
             </Link>
             <Link to={"/counseler/scanner"}>
@@ -276,6 +292,23 @@ function MenuIconAndDropDown({ isSelectionOpen, toggleSelection }) {
                 className={`px-4 py-2 rounded-lg text-lg transition-colors duration-500 ${
                   state.Theme.Theme === "light"
                     ? pathname === "/counseler/attendance"
+                      ? "text-purple-700 bg-purple-200 border border-purple-300"
+                      : "bg-gray-50 border"
+                    : pathname === "/counseler/attendance"
+                    ? "bg-purple-900 text-white border border-purple-700"
+                    : "bg-stone-800 border border-stone-700"
+                }`}
+                onClick={() => toggleSelection(false)}
+              >
+                Attendance
+              </li>
+            </Link>
+            <Link to={"/counseler/sadhana"}>
+              <li
+                className={`px-4 py-2 rounded-lg text-lg transition-colors duration-500 ${
+                  state.Theme.Theme === "light"
+                    ? pathname === "/counseler/sadhana" ||
+                      pathname === "/counseler/configure"
                       ? "text-purple-700 bg-purple-200 border border-purple-300"
                       : "bg-gray-50 border"
                     : pathname === "/counseler/attendance"

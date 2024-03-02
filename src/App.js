@@ -12,15 +12,28 @@ import { useEffect } from "react";
 import RegisterCounselee from "./App/Counselees/Register";
 import AttendanceCounselee from "./App/Counselees/AttendanceCounselee";
 import RSVPCounselee from "./App/Counselees/RSVPCounselee";
+import Sadhana from "./App/Sadhana/Sadhana";
+import ConfigureSadhana from "./App/Sadhana/SadhanaForm/ConfigureSadhana";
+import SadhanaCounselee from "./App/Counselees/Sadhana";
+import ActivityCounselee from "./App/Counselees/Activities";
 
 function AllRoutes() {
   const { state, dispatch } = useMyContext();
+
   useEffect(() => {
-    const theme = localStorage.getItem("THEME");
-    if (theme) {
-      dispatch({ type: theme });
-    }
+    const prefersDarkMode =
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "DARK"
+        : "LIGHT";
+
+    const storedTheme = localStorage.getItem("THEME");
+    const initialTheme = storedTheme || prefersDarkMode;
+
+    localStorage.setItem("THEME", initialTheme);
+    dispatch({ type: initialTheme });
   }, [dispatch]);
+
   return (
     <div
       className={`min-h-screen ${
@@ -35,9 +48,16 @@ function AllRoutes() {
         <Route path="/counseler/activities" element={<Activities />} />
         <Route path="/counseler/sessions" element={<Sessions />} />
         <Route path="/counseler/attendance" element={<Attendance />} />
+        <Route path="/counseler/sadhana" element={<Sadhana />} />
+        <Route path="/counseler/configure" element={<ConfigureSadhana />} />
         <Route path="/register" element={<RegisterCounselee />} />
-        <Route path="/attendance" element={<AttendanceCounselee />} />
-        <Route path="/rsvp" element={<RSVPCounselee />} />
+        <Route
+          path="/attendance/:counselerId"
+          element={<AttendanceCounselee />}
+        />
+        <Route path="/sadhana/:counselerId" element={<SadhanaCounselee />} />
+        <Route path="/rsvp/:counselerId" element={<RSVPCounselee />} />
+        <Route path="/activity/:counselerId" element={<ActivityCounselee />} />
         <Route path="/counseler/scanner" element={<Scanner />} />
       </Routes>
     </div>

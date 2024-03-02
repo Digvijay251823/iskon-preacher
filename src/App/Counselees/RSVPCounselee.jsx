@@ -1,7 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import { useMyContext } from "../../store/context";
-import DatePicker from "react-date-picker";
-import { MdKeyboardArrowDown } from "react-icons/md";
+
 import { FiClock } from "react-icons/fi";
 
 const sessions = [
@@ -142,10 +141,22 @@ function RSVPComponent({ session }) {
     >
       <p className="font-semibold text-lg">{session.sessionName}</p>
       <div className="flex items-center gap-5 text-lg">
-        <button className="border bg-green-200 border-green-300 px-4 py-1 rounded-lg">
+        <button
+          className={`border ${
+            state.Theme.Theme === "light"
+              ? "bg-green-200 border-green-300"
+              : "bg-green-800 border-green-600"
+          } px-4 py-1 rounded-lg`}
+        >
           YES
         </button>
-        <button className="border bg-red-200 border-red-300 px-4 py-1 rounded-lg">
+        <button
+          className={`border ${
+            state.Theme.Theme === "light"
+              ? "bg-red-200 border-red-300"
+              : "bg-red-800 border-red-600"
+          } px-4 py-1 rounded-lg`}
+        >
           NO
         </button>
       </div>
