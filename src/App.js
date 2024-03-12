@@ -1,4 +1,10 @@
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import {
+  Route,
+  BrowserRouter as Router,
+  Routes,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 import "./App.css";
 import Header from "./App/components/Header";
 import { MyContextProvider, useMyContext } from "./store/context";
@@ -16,9 +22,25 @@ import Sadhana from "./App/Sadhana/Sadhana";
 import ConfigureSadhana from "./App/Sadhana/SadhanaForm/ConfigureSadhana";
 import SadhanaCounselee from "./App/Counselees/Sadhana";
 import ActivityCounselee from "./App/Counselees/Activities";
+import Login from "./App/Login";
+import AnalyticsCCT from "./cct/Analytics";
+import SevaCCT from "./cct/Activities/SevaCCT";
+import AttendanceCCT from "./cct/Attendance/Attendance";
+import SessionsCCT from "./cct/Sessions/Sessions";
+import CounselersCCT from "./cct/Counselees/Counselers";
+import CounselerChangeForm from "./CounselerChange/CounselerChangeForm";
 
 function AllRoutes() {
   const { state, dispatch } = useMyContext();
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const authenticated = localStorage.getItem("AUTHENTICATED");
+    if (authenticated === "true") {
+      dispatch({ type: "LOGIN" });
+    }
+  }, [dispatch]);
 
   useEffect(() => {
     const prefersDarkMode =
@@ -33,6 +55,12 @@ function AllRoutes() {
     localStorage.setItem("THEME", initialTheme);
     dispatch({ type: initialTheme });
   }, [dispatch]);
+
+  useEffect(() => {
+    if (pathname === "/") {
+      navigate("/counseler/analytics");
+    }
+  }, [pathname, navigate]);
 
   return (
     <div
@@ -50,7 +78,19 @@ function AllRoutes() {
         <Route path="/counseler/attendance" element={<Attendance />} />
         <Route path="/counseler/sadhana" element={<Sadhana />} />
         <Route path="/counseler/configure" element={<ConfigureSadhana />} />
+        <Route path="/counseler/scan" element={<Scanner />} />
+        <Route path="/cct/scan" element={<Scanner />} />
+        <Route path="/cct/analytics" element={<Analytics />} />
+        <Route path="/cct/counselers" element={<CounselersCCT />} />
+        <Route path="/cct/seva" element={<SevaCCT />} />
+        <Route path="/cct/sessions" element={<SessionsCCT />} />
+        <Route path="/cct/attendance" element={<AttendanceCCT />} />
+
         <Route path="/register" element={<RegisterCounselee />} />
+        <Route
+          path="/attendance/cbm/:cbmsessionId"
+          element={<AttendanceCounselee />}
+        />
         <Route
           path="/attendance/:counselerId"
           element={<AttendanceCounselee />}
@@ -58,7 +98,9 @@ function AllRoutes() {
         <Route path="/sadhana/:counselerId" element={<SadhanaCounselee />} />
         <Route path="/rsvp/:counselerId" element={<RSVPCounselee />} />
         <Route path="/activity/:counselerId" element={<ActivityCounselee />} />
-        <Route path="/counseler/scanner" element={<Scanner />} />
+
+        <Route path="/auth/signin" element={<Login />} />
+        <Route path="/counselerchange" element={<CounselerChangeForm />} />
       </Routes>
     </div>
   );

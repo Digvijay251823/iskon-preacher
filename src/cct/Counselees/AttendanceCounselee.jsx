@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useMyContext } from "../../store/context";
 
 import { MdKeyboardArrowDown } from "react-icons/md";
@@ -66,8 +66,7 @@ const sessions = [
 
 function AttendanceCounselee() {
   const { state } = useMyContext();
-  const [isSelectionOpenSelection, setisSelectionOpenSelection] =
-    useState(false);
+  const [isOpenSelection, setIsOpenSelection] = useState(false);
 
   const [FIRSTNAME, setFirstName] = useState("");
   const [LASTNAME, setLastName] = useState("");
@@ -146,10 +145,8 @@ function AttendanceCounselee() {
                   PREVIOUS SESSIONS
                 </label>
                 <MenuIconAndDropDown
-                  isSelectionOpen={isSelectionOpenSelection}
-                  toggleSelection={(value) =>
-                    setisSelectionOpenSelection(value)
-                  }
+                  isSelectionOpen={isOpenSelection}
+                  toggleSelection={(value) => setIsOpenSelection(value)}
                   setSelected={(value) => setGender(value)}
                 />
               </div>
@@ -171,50 +168,19 @@ function MenuIconAndDropDown({
   const { state } = useMyContext();
   const menuRef = useRef();
   const [selectedOption, setSelectedOption] = useState("");
-  const [modalStyle, setModalStyle] = useState({
-    transform: "scale(0.95)",
-    opacity: 0,
-  });
-  const [isClosing, setIsClosing] = useState(false);
-
-  useEffect(() => {
-    if (isSelectionOpen) {
-      // Open modal animation
-      setTimeout(() => {
-        setModalStyle({
-          transform: "scale(1)",
-          opacity: 1,
-        });
-      }, 50); // Delay the transition slightly for better visual effect
-    } else {
-      // Close modal animation
-      setModalStyle({
-        transform: "scale(0.95)",
-        opacity: 0,
-      });
-      setTimeout(() => {
-        setIsClosing(false);
-      }, 3000); // Adjust this duration according to your transition duration
-    }
-  }, [isSelectionOpen]);
-
-  const closeModal = useCallback(() => {
-    setIsClosing(true);
-    toggleSelection(false);
-  }, [toggleSelection]);
 
   // Attach click outside listener
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
-        closeModal(false);
+        toggleSelection(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [toggleSelection, closeModal]);
+  }, [toggleSelection]);
   return (
     <div className="relative inline-block text-left" ref={menuRef}>
       <button
@@ -234,7 +200,7 @@ function MenuIconAndDropDown({
       </button>
       {isSelectionOpen && (
         <div
-          className={`origin-top-left absolute bottom-0 mb-12 w-full rounded-lg shadow-lg z-[1000] ${
+          className={`origin-top-left absolute left-0 mt-2 w-full rounded-lg shadow-lg z-[1000] ${
             state.Theme.Theme === "light"
               ? "bg-white border-gray-300"
               : "bg-stone-900 border border-stone-700"
@@ -242,11 +208,6 @@ function MenuIconAndDropDown({
           role="menu"
           aria-orientation="vertical"
           aria-labelledby="options-menu"
-          style={{
-            ...modalStyle,
-            transition: "transform 0.3s ease-out, opacity 0.3s ease-out",
-          }}
-          onClick={(e) => e.stopPropagation()}
         >
           <ul className="flex flex-col gap-3" role="none">
             {sessions?.map((session, index) => (

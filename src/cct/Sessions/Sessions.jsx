@@ -1,13 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useMyContext } from "../../store/context";
 import { FiEdit, FiPlus, FiTrash } from "react-icons/fi";
-import Modal from "../components/Modal";
+
 import { MdKeyboardArrowDown } from "react-icons/md";
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { RxCross1 } from "react-icons/rx";
+import Modal from "../../App/components/Modal";
+import AttendanceLink from "./AttendanceLink";
 
-const sessions = [
+const sessionsCCT = [
   {
     id: 1,
     scheduledSessionName: "Session 1",
@@ -73,13 +75,13 @@ const sessions = [
   },
 ];
 
-function Sessions() {
+function SessionsCCT() {
   const { state } = useMyContext();
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="flex flex-col items-center">
       <div className="flex items-center w-full lg:px-10 px-4 pt-10 justify-between">
-        <h1 className="font-semibold text-2xl">Sessions</h1>
+        <h1 className="font-semibold text-2xl">CBM Sessions</h1>
         <div>
           <button
             className={`flex items-center md:px-5 px-3 py-1.5 md:gap-5 gap-3 ${
@@ -90,7 +92,7 @@ function Sessions() {
             onClick={() => setIsOpen(true)}
           >
             <FiPlus />
-            Sessions
+            CBM Sessions
           </button>
         </div>
       </div>
@@ -122,10 +124,11 @@ function Sessions() {
               <th className="text-xs text-gray-500 py-3">TOTAL ATTENDANCE</th>
               <th className="text-xs text-gray-500 py-3">CREATED BY</th>
               <th className="text-xs text-gray-500 py-3">ACTIONS</th>
+              <th className="text-xs text-gray-500 py-3">ATTENDANCE LINKS</th>
             </tr>
           </thead>
           <tbody>
-            {sessions?.map((session, index) => (
+            {sessionsCCT?.map((session, index) => (
               <tr
                 key={index}
                 className={
@@ -163,12 +166,17 @@ function Sessions() {
                 </td>
                 <td className=" whitespace-nowrap text-center py-5 px-8">
                   <div className="flex items-center gap-10 px-3">
-                    <button className="hover:animate-bounce hover:text-red-500 text-red-400 p-1">
+                    <button className="hover:animate-bounce hover:text-red-500">
                       <FiTrash size={20} />
                     </button>
-                    <button className="text-blue-700 hover:animate-pulse">
+                    <button>
                       <FiEdit size={20} />
                     </button>
+                  </div>
+                </td>
+                <td>
+                  <div>
+                    <AttendanceLink />
                   </div>
                 </td>
               </tr>
@@ -181,7 +189,7 @@ function Sessions() {
   );
 }
 
-export default Sessions;
+export default SessionsCCT;
 
 function CreateSession({ isOpen, onClose }) {
   const { state } = useMyContext();
@@ -213,7 +221,7 @@ function CreateSession({ isOpen, onClose }) {
       >
         <div className="lg:block hidden">
           <img
-            src={require("../../assets/sessionsSchedule.png")}
+            src={require("../../assets/counselle.png")}
             height={400}
             className="h-[400px]"
             alt="addcounsellee"
@@ -236,7 +244,7 @@ function CreateSession({ isOpen, onClose }) {
               </div>
               <div className="flex flex-col gap-1 w-full">
                 <label className="font-semibold" htmlFor="contactNumber">
-                  SELECT SESSIONS
+                  SELECT SESSIONSCCT
                 </label>
                 <MenuIconAndDropDown
                   setSelected={(value) => setGender(value)}
@@ -347,7 +355,7 @@ function MenuIconAndDropDown({ setSelected }) {
           aria-labelledby="options-menu"
         >
           <ul className="flex flex-col gap-3" role="none">
-            {sessions?.map((session, index) => (
+            {sessionsCCT?.map((session, index) => (
               <li
                 key={index}
                 onClick={() => {
