@@ -117,13 +117,7 @@ function AttendanceCCT() {
       <div className="flex items-center w-full lg:px-10 px-4 pt-10 justify-between">
         <h1 className="font-semibold text-2xl">AttendanceCCT</h1>
       </div>
-      <div
-        className={`border mt-4 px-4 py-2 rounded-xl ${
-          state.Theme.Theme === "light" ? "border-gray-300" : "border-stone-700"
-        }`}
-      >
-        Pending <i className="text-red-500">10</i>
-      </div>
+
       <div
         className={` overflow-x-auto my-6 w-[90vw] border rounded-lg ${
           state.Theme.Theme === "light"
@@ -164,7 +158,11 @@ function AttendanceCCT() {
                 }
               >
                 <td className=" whitespace-nowrap text-center py-5 px-8">
-                  {attendanceCCT.status}
+                  {attendanceCCT.status === "ONLINE" ? (
+                    <div className="text-yellow-500">ONLINE</div>
+                  ) : (
+                    <div className="text-green-500">OFFLINE</div>
+                  )}
                 </td>
                 <td className=" whitespace-nowrap text-center py-5 px-8">
                   {attendanceCCT.firstName}
