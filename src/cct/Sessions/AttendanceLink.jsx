@@ -28,7 +28,7 @@ function AttendanceLink({ sessionId }) {
   return (
     <>
       <div className="flex items-center gap-5 px-4">
-        <Link to={`/attendance/cbm/${sessionId}`}>
+        <Link to={`/attendance/cbm/${sessionId}`} aria-disabled={sessionId}>
           <button className="flex items-center gap-1 text-blue-700 underline">
             <AiOutlineLink />
             Link

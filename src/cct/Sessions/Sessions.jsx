@@ -19,6 +19,7 @@ const sessionsCCT = [
     durationInMinutes: 60,
     totalAttendance: 30,
     status: "ONLINE",
+    expired: false,
   },
   {
     id: 2,
@@ -29,6 +30,7 @@ const sessionsCCT = [
     durationInMinutes: 90,
     totalAttendance: 30,
     status: "OFFLINE",
+    expired: true,
   },
   {
     id: 3,
@@ -39,6 +41,7 @@ const sessionsCCT = [
     durationInMinutes: 120,
     totalAttendance: 30,
     status: "OFFLINE",
+    expired: true,
   },
   {
     id: 4,
@@ -50,6 +53,7 @@ const sessionsCCT = [
     durationInMinutes: 75,
     totalAttendance: 30,
     status: "ONLINE",
+    expired: false,
   },
   {
     id: 5,
@@ -61,6 +65,7 @@ const sessionsCCT = [
     durationInMinutes: 90,
     totalAttendance: 30,
     status: "OFFLINE",
+    expired: true,
   },
   {
     id: 6,
@@ -72,6 +77,7 @@ const sessionsCCT = [
     durationInMinutes: 60,
     totalAttendance: 30,
     status: "ONLINE",
+    expired: false,
   },
 ];
 
@@ -175,9 +181,15 @@ function SessionsCCT() {
                   </div>
                 </td>
                 <td>
-                  <div>
-                    <AttendanceLink />
-                  </div>
+                  {session.expired ? (
+                    <div className="text-gray-400 text-center text-xl">
+                      expired
+                    </div>
+                  ) : (
+                    <div>
+                      <AttendanceLink disabled={session.sessionId} />
+                    </div>
+                  )}
                 </td>
               </tr>
             ))}
