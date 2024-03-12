@@ -4,6 +4,7 @@ import { useMyContext } from "../../store/context";
 import Modal from "../components/Modal";
 import ConfigureSadhanaForm from "./SadhanaForm/ConfigureSadhana";
 import { FiPlus } from "react-icons/fi";
+import contentActivities from "../Activities/Data";
 
 const sessionsCCT = [
   {
@@ -110,22 +111,46 @@ function Sadhana() {
               }
             >
               <th className="text-xs text-gray-500 py-3">
-                SCHEDULED SESSION NAME
+                PARTICIPANT FIRST NAME
               </th>
-              <th className="text-xs text-gray-500 py-3">SESSION NAME</th>
-              <th className="text-xs text-gray-500 py-3">DESCRIPTION</th>
-              <th className="text-xs text-gray-500 py-3">STATUS</th>
               <th className="text-xs text-gray-500 py-3">
-                DURATION IN MINUTES
+                PARTICIPANT LAST NAME
               </th>
-              <th className="text-xs text-gray-500 py-3">TOTAL ATTENDANCE</th>
-              <th className="text-xs text-gray-500 py-3">CREATED BY</th>
-              <th className="text-xs text-gray-500 py-3">ACTIONS</th>
-              <th className="text-xs text-gray-500 py-3">ATTENDANCE LINKS</th>
+              <th className="text-xs text-gray-500 py-3">
+                PARTICIPANT CONTACT NUMBER
+              </th>
+              <th className="text-xs text-gray-500 py-3">
+                PARTICIPANT WHATSAPP NUMBER
+              </th>
+              <th className="text-xs text-gray-500 py-3">
+                EARLY JAPA ROUNDS BEFORE 8 AM{" "}
+              </th>
+              <th className="text-xs text-gray-500 py-3">
+                EARLY JAPA ROUNDS AFTER 8 AM
+              </th>
+              <th className="text-xs text-gray-500 py-3">
+                FIRST 8 ROUNDS COMPLETED
+              </th>
+              <th className="text-xs text-gray-500 py-3">
+                NEXT 8 ROUNDS COMPLETED TIME
+              </th>
+              <th className="text-xs text-gray-500 py-3">NUMBER OF ROUNDS</th>
+              <th className="text-xs text-gray-500 py-3">
+                OTHER CLASS HEARING
+              </th>
+              <th className="text-xs text-gray-500 py-3">
+                PRABHUPADA CLASS HEARING
+              </th>
+              <th className="text-xs text-gray-500 py-3">
+                PRABHU PADA BOOK READING
+              </th>
+              <th className="text-xs text-gray-500 py-3">
+                NON PRABHUPADA BOOK READING
+              </th>
             </tr>
           </thead>
           <tbody>
-            {sessionsCCT?.map((session, index) => (
+            {contentActivities?.map((activity, index) => (
               <tr
                 key={index}
                 className={
@@ -135,31 +160,40 @@ function Sadhana() {
                 }
               >
                 <td className=" whitespace-nowrap text-center py-5 px-8">
-                  {session.scheduledSessionName}
+                  {activity.participantFirstName}
                 </td>
                 <td className=" whitespace-nowrap text-center py-5 px-8">
-                  {session.sessionName}
+                  {activity.participantLastName}
                 </td>
                 <td className=" whitespace-nowrap text-center py-5 px-8">
-                  {session.description}
+                  {activity.participantContactNumber}
                 </td>
                 <td className=" whitespace-nowrap text-center py-5 px-8">
-                  <div>
-                    {session.status === "ONLINE" ? (
-                      <p className="text-yellow-500">ONLINE</p>
-                    ) : (
-                      <p className="text-green-500">OFFLINE</p>
-                    )}
-                  </div>
+                  {activity.earlyJapaRoundsAfter8AM}
                 </td>
                 <td className=" whitespace-nowrap text-center py-5 px-8">
-                  {session.durationInMinutes}
+                  {activity.earlyJapaRoundsAfter8AM}
                 </td>
                 <td className=" whitespace-nowrap text-center py-5 px-8">
-                  {session.totalAttendance}
+                  {activity.first8RoundsCompletedTime}
                 </td>
                 <td className=" whitespace-nowrap text-center py-5 px-8">
-                  {session.createdBy}
+                  {activity.next8RoundsCompletedTime}
+                </td>
+                <td className=" whitespace-nowrap text-center py-5 px-8">
+                  {activity.numberOfRounds}
+                </td>
+                <td className=" whitespace-nowrap text-center py-5 px-8">
+                  {activity.otherClassHearing}
+                </td>
+                <td className=" whitespace-nowrap text-center py-5 px-8">
+                  {activity.prabhupadaClassHearing}
+                </td>
+                <td className=" whitespace-nowrap text-center py-5 px-8">
+                  {activity.prabhupadaBookReading}
+                </td>
+                <td className=" whitespace-nowrap text-center py-5 px-8">
+                  {activity.nonPrabhupadaBookReading}
                 </td>
               </tr>
             ))}

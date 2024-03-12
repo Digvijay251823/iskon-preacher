@@ -12,6 +12,7 @@ const attendance = [
     lastName: "Doe",
     contactNumber: "123-456-7890",
     status: "approved",
+    modeOfAttendance: "OFFLINE",
     date: "2024-03-01",
   },
   {
@@ -22,6 +23,7 @@ const attendance = [
     lastName: "Smith",
     contactNumber: "987-654-3210",
     status: "pending",
+    modeOfAttendance: "ONLINE",
     date: "2024-03-02",
   },
   {
@@ -32,6 +34,7 @@ const attendance = [
     lastName: "Johnson",
     contactNumber: "456-789-0123",
     status: "approved",
+    modeOfAttendance: "OFFLINE",
     date: "2024-03-03",
   },
   {
@@ -43,6 +46,7 @@ const attendance = [
     lastName: "Brown",
     contactNumber: "789-012-3456",
     status: "pending",
+    modeOfAttendance: "ONLINE",
     date: "2024-03-04",
   },
   {
@@ -54,6 +58,7 @@ const attendance = [
     lastName: "Adams",
     contactNumber: "234-567-8901",
     status: "approved",
+    modeOfAttendance: "OFFLINE",
     date: "2024-03-05",
   },
   {
@@ -65,6 +70,7 @@ const attendance = [
     lastName: "Wilson",
     contactNumber: "567-890-1234",
     status: "approved",
+    modeOfAttendance: "OFFLINE",
     date: "2024-03-06",
   },
   {
@@ -75,6 +81,7 @@ const attendance = [
     lastName: "Jones",
     contactNumber: "345-678-9012",
     status: "pending",
+    modeOfAttendance: "ONLINE",
     date: "2024-03-01",
   },
   {
@@ -85,6 +92,7 @@ const attendance = [
     lastName: "Lee",
     contactNumber: "901-234-5678",
     status: "approved",
+    modeOfAttendance: "OFFLINE",
     date: "2024-03-02",
   },
   {
@@ -95,6 +103,7 @@ const attendance = [
     lastName: "Garcia",
     contactNumber: "678-901-2345",
     status: "pending",
+    modeOfAttendance: "ONLINE",
     date: "2024-03-03",
   },
   {
@@ -106,6 +115,7 @@ const attendance = [
     lastName: "Martinez",
     contactNumber: "123-456-7890",
     status: "approved",
+    modeOfAttendance: "OFFLINE",
     date: "2024-03-04",
   },
 ];
@@ -140,6 +150,7 @@ function Attendance() {
                   : "border-b border-b-stone-800 bg-stone-900"
               }
             >
+              <th className="text-xs text-gray-500 py-3">MODE OF ATTENDANCE</th>
               <th className="text-xs text-gray-500 py-3">STATUS</th>
               <th className="text-xs text-gray-500 py-3">FIRST NAME</th>
               <th className="text-xs text-gray-500 py-3">LAST NAME</th>
@@ -163,6 +174,13 @@ function Attendance() {
                     : "border-b border-stone-800"
                 }
               >
+                <td className=" whitespace-nowrap text-center py-5 px-8">
+                  {attendance.modeOfAttendance === "ONLINE" ? (
+                    <p className="text-yellow-500">ONLINE</p>
+                  ) : (
+                    <p className="text-green-500">OFFLINE</p>
+                  )}
+                </td>
                 <td className=" whitespace-nowrap text-center py-5 px-8">
                   <ToggleStatus status={attendance.status} />
                 </td>
