@@ -56,7 +56,7 @@ function ConfigureSadhana({ onClose }) {
         className={`fixed z-[1000] md:w-[50vw] w-full left-0 top-0 bottom-0 ${
           state.Theme.Theme === "light"
             ? " bg-gradient-to-br from-slate-100 to-purple-300"
-            : "bg-gradient-to-br from-stone-900 to-purple-950"
+            : "bg-gradient-to-br from-stone-900 via-stone-800 to-purple-950"
         }`}
       >
         <div className="px-5 py-5">
