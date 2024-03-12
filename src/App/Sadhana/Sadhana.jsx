@@ -78,7 +78,7 @@ function Sadhana() {
   return (
     <div className="flex flex-col items-center">
       <div className="flex items-center w-full lg:px-10 px-4 pt-10 justify-between">
-        <h1 className="font-semibold text-2xl">CBM Sessions</h1>
+        <h1 className="font-semibold text-2xl">Sadhana</h1>
         <div>
           <button
             className={`flex items-center md:px-5 px-3 py-1.5 md:gap-5 gap-3 ${
@@ -89,7 +89,7 @@ function Sadhana() {
             onClick={() => setIsOpen(true)}
           >
             <FiPlus />
-            CBM Sessions
+            Configure Form
           </button>
         </div>
       </div>
