@@ -42,7 +42,7 @@ function ConfigureSadhana({ onClose }) {
   return (
     <div className="h-screen w-screen overflow-y-auto">
       <button
-        className={`absolute right-5 top-5 flex items-center gap-2 border p-2 rounded-xl ${
+        className={`absolute right-5 top-5 flex items-center gap-2 border p-2 rounded-xl md:z-0 z-[2000] ${
           state.Theme.Theme === "light"
             ? "bg-white border-gray-300"
             : "bg-stone-700 border-stone-600"
@@ -53,11 +53,19 @@ function ConfigureSadhana({ onClose }) {
         close
       </button>
       <div
-        className={`fixed z-[1000] w-[50vw] left-0 top-0 bottom-0 ${
-          state.Theme.Theme === "light" ? "bg-white" : "bg-stone-900"
+        className={`fixed z-[1000] md:w-[50vw] w-full left-0 top-0 bottom-0 ${
+          state.Theme.Theme === "light"
+            ? " bg-gradient-to-br from-slate-100 to-purple-300"
+            : "bg-gradient-to-br from-stone-900 to-purple-950"
         }`}
       >
-        <div className="flex flex-col gap-3 py-10">
+        <div className="px-5 py-5">
+          <p className=" text-xl font-bold ">Configure Form</p>
+          <p className="text-gray-500">
+            select some fields below to customize the sadhana form
+          </p>
+        </div>
+        <div className="flex flex-col gap-2 py-5">
           {FormListItems?.map((item, index) => (
             <div key={index} className="mx-10 flex items-center gap-2">
               <input
