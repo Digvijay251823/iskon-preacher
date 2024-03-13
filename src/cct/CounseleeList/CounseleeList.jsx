@@ -17,6 +17,7 @@ const counseleesData = [
     email: "alice.smith@example.com",
     address: "456 Elm St, City, Country",
     gender: "Female",
+    created: "02-03-24",
     age: 28,
     counselor: "John Doe",
     numberOfSessionsAttended: 30,
@@ -30,6 +31,7 @@ const counseleesData = [
     email: "bob.johnson@example.com",
     address: "789 Oak St, City, Country",
     gender: "Male",
+    created: "03-03-24",
     age: 35,
     counselor: "Jane Smith",
     numberOfSessionsAttended: 30,
@@ -43,6 +45,7 @@ const counseleesData = [
     email: "charlie.brown@example.com",
     address: "123 Pine St, City, Country",
     gender: "Male",
+    created: "03-03-24",
     age: 42,
     counselor: "John Doe",
     numberOfSessionsAttended: 30,
@@ -56,6 +59,7 @@ const counseleesData = [
     email: "diana.lee@example.com",
     address: "456 Maple St, City, Country",
     gender: "Female",
+    created: "02-03-24",
     age: 30,
     counselor: "Jane Smith",
     numberOfSessionsAttended: 30,
@@ -69,6 +73,7 @@ const counseleesData = [
     email: "ella.garcia@example.com",
     address: "789 Cedar St, City, Country",
     gender: "Female",
+    created: "02-03-24",
     age: 25,
     counselor: "John Doe",
     numberOfSessionsAttended: 30,
@@ -82,6 +87,7 @@ const counseleesData = [
     email: "frank.davis@example.com",
     address: "123 Walnut St, City, Country",
     gender: "Male",
+    created: "03-03-24",
     age: 40,
     counselor: "Jane Smith",
     numberOfSessionsAttended: 30,
@@ -95,6 +101,7 @@ const counseleesData = [
     email: "grace.taylor@example.com",
     address: "456 Birch St, City, Country",
     gender: "Female",
+    created: "02-03-24",
     age: 33,
     counselor: "John Doe",
     numberOfSessionsAttended: 30,
@@ -108,6 +115,7 @@ const counseleesData = [
     email: "henry.martinez@example.com",
     address: "789 Pine St, City, Country",
     gender: "Male",
+    created: "03-03-24",
     age: 38,
     counselor: "Jane Smith",
     numberOfSessionsAttended: 30,
@@ -121,6 +129,7 @@ const counseleesData = [
     email: "ivy.anderson@example.com",
     address: "123 Elm St, City, Country",
     gender: "Female",
+    created: "02-03-24",
     age: 27,
     counselor: "John Doe",
     numberOfSessionsAttended: 30,
@@ -134,6 +143,7 @@ const counseleesData = [
     email: "jack.wilson@example.com",
     address: "456 Oak St, City, Country",
     gender: "Male",
+    created: "03-03-24",
     age: 32,
     counselor: "Jane Smith",
     numberOfSessionsAttended: 30,
@@ -180,7 +190,7 @@ function CounseleeList() {
               <th className="text-xs text-gray-500 py-3">COUNSELER</th>
               <th className="text-xs text-gray-500 py-3">NAME</th>
               <th className="text-xs text-gray-500 py-3">CONTACT NUMBER</th>
-              <th className="text-xs text-gray-500 py-3">WHATSAPP NUMBER</th>
+              <th className="text-xs text-gray-500 py-3">DATE OF JOINING</th>
               <th className="text-xs text-gray-500 py-3">EMAIL</th>
               <th className="text-xs text-gray-500 py-3">ADDRESS</th>
               <th className="text-xs text-gray-500 py-3">GENDER</th>
@@ -210,7 +220,7 @@ function CounseleeList() {
                   {counselor.contactNumber}
                 </td>
                 <td className=" whitespace-nowrap text-center py-5 px-4">
-                  {counselor.whatsAppNumber}
+                  {counselor.created}
                 </td>
                 <td className=" whitespace-nowrap text-center py-5 px-4">
                   {counselor.email}

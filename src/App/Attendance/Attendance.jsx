@@ -152,12 +152,9 @@ function Attendance() {
             >
               <th className="text-xs text-gray-500 py-3">MODE OF ATTENDANCE</th>
               <th className="text-xs text-gray-500 py-3">STATUS</th>
-              <th className="text-xs text-gray-500 py-3">FIRST NAME</th>
-              <th className="text-xs text-gray-500 py-3">LAST NAME</th>
+              <th className="text-xs text-gray-500 py-3">NAME</th>
               <th className="text-xs text-gray-500 py-3">CONTACT NUMBER</th>
-              <th className="text-xs text-gray-500 py-3">
-                SCHEDULED SESSION NAME
-              </th>
+
               <th className="text-xs text-gray-500 py-3">SESSION NAME</th>
               <th className="text-xs text-gray-500 py-3">DESCRIPTION</th>
 
@@ -185,17 +182,13 @@ function Attendance() {
                   <ToggleStatus status={attendance.status} />
                 </td>
                 <td className=" whitespace-nowrap text-center py-5 px-8">
-                  {attendance.firstName}
+                  {`${attendance.firstName} ${attendance.lastName}`}
                 </td>
-                <td className=" whitespace-nowrap text-center py-5 px-8">
-                  {attendance.lastName}
-                </td>
+
                 <td className=" whitespace-nowrap text-center py-5 px-8">
                   {attendance.contactNumber}
                 </td>
-                <td className=" whitespace-nowrap text-center py-5 px-8">
-                  {attendance.scheduledSessionName}
-                </td>
+
                 <td className=" whitespace-nowrap text-center py-5 px-8">
                   {attendance.sessionName}
                 </td>

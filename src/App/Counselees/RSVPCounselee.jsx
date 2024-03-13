@@ -218,8 +218,6 @@ function RSVPCounselee() {
   const [fetchedData, setFetchData] = useState({});
   const [counselerError, setCounselerError] = useState(false);
 
-  console.log(counselerError);
-
   useEffect(() => {
     if (Object.keys(fetchedData).length === 0) {
       return;

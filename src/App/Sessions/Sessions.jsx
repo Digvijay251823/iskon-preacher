@@ -110,9 +110,6 @@ function Sessions() {
                   : "border-b border-b-stone-800 bg-stone-900"
               }
             >
-              <th className="text-xs text-gray-500 py-3">
-                SCHEDULED SESSION NAME
-              </th>
               <th className="text-xs text-gray-500 py-3">SESSION NAME</th>
               <th className="text-xs text-gray-500 py-3">DESCRIPTION</th>
               <th className="text-xs text-gray-500 py-3">STATUS</th>
@@ -134,9 +131,6 @@ function Sessions() {
                     : "border-b border-stone-800"
                 }
               >
-                <td className=" whitespace-nowrap text-center py-5 px-8">
-                  {session.scheduledSessionName}
-                </td>
                 <td className=" whitespace-nowrap text-center py-5 px-8">
                   {session.sessionName}
                 </td>

@@ -29,7 +29,7 @@ function DevoteesAttendingCbmBelowThreshold() {
       },
       title: {
         display: true,
-        text: "COUNSELOR ATTENDED CBM BELOW THRESHOLD(6 MONTHS)",
+        text: "COUNSELOR ATTENDED CBM BELOW THRESHOLD(1 YEAR)",
       },
     },
   };
@@ -49,7 +49,7 @@ function DevoteesAttendingCbmBelowThreshold() {
     datasets: [
       {
         label: "ATTENDED CBM",
-        data: [10, 30, 20, 30, 42, 10, 10, 40, 10, 30, 10],
+        data: [5, 4, 1, 6, 5, 4, 1, 2, 3, 2, 6],
         backgroundColor: `${
           state.Theme.Theme === "light" ? "rgb(5 150 105)" : "rgb(4 120 87)"
         }`,

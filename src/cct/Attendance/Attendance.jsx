@@ -125,7 +125,7 @@ function AttendanceCCT() {
   return (
     <div className="flex flex-col items-center">
       <div className="flex items-center w-full lg:px-10 px-4 pt-10 justify-between">
-        <h1 className="font-semibold text-2xl">AttendanceCBM</h1>
+        <h1 className="font-semibold text-2xl">CBM Attendance</h1>
       </div>
 
       <div

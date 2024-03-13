@@ -30,10 +30,10 @@ function CBMMonthylAttendanceCount() {
           11000,
         ],
         backgroundColor: `${
-          state.Theme.Theme === "light" ? "rgb(37 99 235)" : "rgb(30 64 175)"
+          state.Theme.Theme === "light" ? "rgb(5 150 105)" : "rgb(4 120 87)"
         }`,
         borderColor: `${
-          state.Theme.Theme === "light" ? "rgb(37 99 235)" : "rgb(30 64 175)"
+          state.Theme.Theme === "light" ? "rgb(16 185 129)" : "rgb(5 150 105)"
         }`,
         borderWidth: 1,
       },

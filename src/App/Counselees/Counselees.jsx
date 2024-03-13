@@ -9,6 +9,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 const counseleesData = [
   {
+    CounselerName: "Sujay Nimai Pr",
     firstName: "Alice",
     lastName: "Smith",
     contactNumber: "111-222-3333",
@@ -16,11 +17,13 @@ const counseleesData = [
     email: "alice.smith@example.com",
     address: "456 Elm St, City, Country",
     gender: "Female",
+    created: "02-03-24",
     age: 28,
     counselor: "John Doe",
     numberOfSessionsAttended: 30,
   },
   {
+    CounselerName: "Sujay Nimai Pr",
     firstName: "Bob",
     lastName: "Johnson",
     contactNumber: "444-555-6666",
@@ -28,11 +31,13 @@ const counseleesData = [
     email: "bob.johnson@example.com",
     address: "789 Oak St, City, Country",
     gender: "Male",
+    created: "03-03-24",
     age: 35,
     counselor: "Jane Smith",
     numberOfSessionsAttended: 30,
   },
   {
+    CounselerName: "Sujay Nimai Pr",
     firstName: "Charlie",
     lastName: "Brown",
     contactNumber: "777-888-9999",
@@ -40,11 +45,13 @@ const counseleesData = [
     email: "charlie.brown@example.com",
     address: "123 Pine St, City, Country",
     gender: "Male",
+    created: "03-03-24",
     age: 42,
     counselor: "John Doe",
     numberOfSessionsAttended: 30,
   },
   {
+    CounselerName: "Sujay Nimai Pr",
     firstName: "Diana",
     lastName: "Lee",
     contactNumber: "111-222-3333",
@@ -52,11 +59,13 @@ const counseleesData = [
     email: "diana.lee@example.com",
     address: "456 Maple St, City, Country",
     gender: "Female",
+    created: "02-03-24",
     age: 30,
     counselor: "Jane Smith",
     numberOfSessionsAttended: 30,
   },
   {
+    CounselerName: "Sujay Nimai Pr",
     firstName: "Ella",
     lastName: "Garcia",
     contactNumber: "444-555-6666",
@@ -64,11 +73,13 @@ const counseleesData = [
     email: "ella.garcia@example.com",
     address: "789 Cedar St, City, Country",
     gender: "Female",
+    created: "02-03-24",
     age: 25,
     counselor: "John Doe",
     numberOfSessionsAttended: 30,
   },
   {
+    CounselerName: "Sujay Nimai Pr",
     firstName: "Frank",
     lastName: "Davis",
     contactNumber: "777-888-9999",
@@ -76,11 +87,13 @@ const counseleesData = [
     email: "frank.davis@example.com",
     address: "123 Walnut St, City, Country",
     gender: "Male",
+    created: "03-03-24",
     age: 40,
     counselor: "Jane Smith",
     numberOfSessionsAttended: 30,
   },
   {
+    CounselerName: "Sujay Nimai Pr",
     firstName: "Grace",
     lastName: "Taylor",
     contactNumber: "111-222-3333",
@@ -88,11 +101,13 @@ const counseleesData = [
     email: "grace.taylor@example.com",
     address: "456 Birch St, City, Country",
     gender: "Female",
+    created: "02-03-24",
     age: 33,
     counselor: "John Doe",
     numberOfSessionsAttended: 30,
   },
   {
+    CounselerName: "Sujay Nimai Pr",
     firstName: "Henry",
     lastName: "Martinez",
     contactNumber: "444-555-6666",
@@ -100,11 +115,13 @@ const counseleesData = [
     email: "henry.martinez@example.com",
     address: "789 Pine St, City, Country",
     gender: "Male",
+    created: "03-03-24",
     age: 38,
     counselor: "Jane Smith",
     numberOfSessionsAttended: 30,
   },
   {
+    CounselerName: "Sujay Nimai Pr",
     firstName: "Ivy",
     lastName: "Anderson",
     contactNumber: "777-888-9999",
@@ -112,11 +129,13 @@ const counseleesData = [
     email: "ivy.anderson@example.com",
     address: "123 Elm St, City, Country",
     gender: "Female",
+    created: "02-03-24",
     age: 27,
     counselor: "John Doe",
     numberOfSessionsAttended: 30,
   },
   {
+    CounselerName: "Sujay Nimai Pr",
     firstName: "Jack",
     lastName: "Wilson",
     contactNumber: "111-222-3333",
@@ -124,6 +143,7 @@ const counseleesData = [
     email: "jack.wilson@example.com",
     address: "456 Oak St, City, Country",
     gender: "Male",
+    created: "03-03-24",
     age: 32,
     counselor: "Jane Smith",
     numberOfSessionsAttended: 30,
@@ -158,19 +178,19 @@ function Counselees() {
             : "border-stone-800"
         }`}
       >
-        <table>
+        <table className="w-full">
           <thead>
             <tr
               className={
                 state.Theme.Theme === "light"
-                  ? "border-b bg-gray-100 "
-                  : "border-b border-b-stone-800 bg-stone-900"
+                  ? "border-b bg-gray-100 w-full"
+                  : "border-b border-b-stone-800 bg-stone-900 w-full"
               }
             >
               <th className="text-xs text-gray-500 py-3">FIRST NAME</th>
               <th className="text-xs text-gray-500 py-3">LAST NAME</th>
               <th className="text-xs text-gray-500 py-3">CONTACT NUMBER</th>
-              <th className="text-xs text-gray-500 py-3">WHATSAPP NUMBER</th>
+              <th className="text-xs text-gray-500 py-3">JOINING DATE</th>
               <th className="text-xs text-gray-500 py-3">EMAIL</th>
               <th className="text-xs text-gray-500 py-3">ADDRESS</th>
               <th className="text-xs text-gray-500 py-3">GENDER</th>
@@ -200,7 +220,7 @@ function Counselees() {
                   {counselor.contactNumber}
                 </td>
                 <td className=" whitespace-nowrap text-center py-5 px-4">
-                  {counselor.whatsAppNumber}
+                  {counselor.created}
                 </td>
                 <td className=" whitespace-nowrap text-center py-5 px-4">
                   {counselor.email}
