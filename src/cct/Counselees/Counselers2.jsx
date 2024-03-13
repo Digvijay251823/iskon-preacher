@@ -237,7 +237,7 @@ function CounselersCCT() {
   return (
     <div className="flex flex-col whitespace-nowrap items-center">
       <div className="flex items-center w-full lg:px-10 pt-10 justify-between">
-        <h1 className="font-semibold text-2xl">Counselers</h1>
+        <h1 className="font-semibold text-2xl">Counselors</h1>
         <div>
           <button
             className={`flex items-center md:px-5 px-3 py-1.5 md:gap-5 gap-3 ${
@@ -393,7 +393,7 @@ function CounselersCCT() {
             }`}
           >
             <h1
-              className={`h-[60px] w-full text-center text-gray-500 py-2 font-bold text-xs  ${
+              className={`h-[60px] w-full text-center text-gray-500 py-2 font-bold text-xs whitespace-break-spaces  ${
                 state.Theme.Theme === "light"
                   ? "border-b bg-purple-200 "
                   : "border-b border-b-stone-800 bg-purple-950 "
@@ -411,7 +411,7 @@ function CounselersCCT() {
                   }`}
                 >
                   <th
-                    className={`text-xs text-gray-500 py-3 whitespace-break-spaces`}
+                    className={`text-xs text-gray-500 py-3 whitespace-break-spaces border-r`}
                   >
                     LAST (6M)
                   </th>
@@ -432,11 +432,11 @@ function CounselersCCT() {
                         : "border-b border-b-stone-800 bg-purple-950 "
                     }`}
                   >
-                    <td className=" whitespace-nowrap text-center py-2 px-4">
+                    <td className=" whitespace-nowrap text-center py-2 px-4 border-r">
                       {counselor.counseleesCount}
                     </td>
                     <td className=" whitespace-nowrap text-center py-2 px-4">
-                      {counselor.contactNumber}
+                      {counselor.templeMorningProgramLastTwoMonths}
                     </td>
                   </tr>
                 ))}
@@ -503,7 +503,7 @@ function CounselersCCT() {
                         {counselor.counseleesCount}
                       </td>
                       <td className=" whitespace-nowrap text-center py-2 px-4">
-                        {counselor.contactNumber}
+                        {counselor.counseleeMeetingCountLast2Months}
                       </td>
                     </tr>
                   ))}

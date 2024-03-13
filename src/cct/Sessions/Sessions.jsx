@@ -127,6 +127,7 @@ function SessionsCCT() {
               <th className="text-xs text-gray-500 py-3">TOTAL ATTENDANCE</th>
 
               <th className="text-xs text-gray-500 py-3">DELETE</th>
+              <th className="text-xs text-gray-500 py-3">RSVP LINKS</th>
               <th className="text-xs text-gray-500 py-3">ATTENDANCE LINKS</th>
             </tr>
           </thead>
@@ -175,7 +176,24 @@ function SessionsCCT() {
                     </div>
                   ) : (
                     <div>
-                      <AttendanceLink disabled={session.sessionId} />
+                      <AttendanceLink
+                        disabled={session.sessionId}
+                        TYPE={"rsvp"}
+                      />
+                    </div>
+                  )}
+                </td>
+                <td>
+                  {session.expired ? (
+                    <div className="text-gray-400 text-center text-xl">
+                      expired
+                    </div>
+                  ) : (
+                    <div>
+                      <AttendanceLink
+                        disabled={session.sessionId}
+                        TYPE={"attendance"}
+                      />
                     </div>
                   )}
                 </td>
@@ -233,23 +251,10 @@ function CreateSession({ isOpen, onClose }) {
           }`}
         >
           <div className="lg:w-[500px] w-[90vw]">
+            <p className="text-center pb-5 font-bold text-red-400 text-xl">
+              CBM SESSIONS
+            </p>
             <form action="" className="PX-5 flex flex-col gap-3">
-              <div className="flex flex-col gap-1 w-full">
-                <label className="font-semibold" htmlFor="contactNumber">
-                  SELECT COURSE
-                </label>
-                <MenuIconAndDropDown
-                  setSelected={(value) => setGender(value)}
-                />
-              </div>
-              <div className="flex flex-col gap-1 w-full">
-                <label className="font-semibold" htmlFor="contactNumber">
-                  SELECT SESSIONSCCT
-                </label>
-                <MenuIconAndDropDown
-                  setSelected={(value) => setGender(value)}
-                />
-              </div>
               <div className="flex flex-col gap-1">
                 <label className="font-semibold" htmlFor="firstName">
                   SESSION NAME
@@ -300,6 +305,33 @@ function CreateSession({ isOpen, onClose }) {
                   />
                 </div>
               </div>
+              <div className="flex flex-col gap-2">
+                <p className="font-semibold">MODE OF ATTENDANCE</p>
+                <div className="flex items-center gap-5">
+                  <div className="flex gap-2">
+                    <input type="checkbox" />
+                    <label className="font-semibold" htmlFor="contactNumber">
+                      OFFLINE
+                    </label>
+                  </div>
+                  <div className="flex gap-2">
+                    <input type="checkbox" />
+                    <label className="font-semibold" htmlFor="contactNumber">
+                      ONLINE
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <button
+                className={`flex items-center w-full justify-center font-semibold border my-5 rounded-xl py-2 ${
+                  state.Theme.Theme === "light"
+                    ? "border-blue-800 bg-blue-500 text-white"
+                    : "border-stone-700 bg-blue-900"
+                }`}
+                type="submit"
+              >
+                Submit
+              </button>
             </form>
           </div>
         </div>

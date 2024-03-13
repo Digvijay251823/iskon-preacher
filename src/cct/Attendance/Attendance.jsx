@@ -12,6 +12,7 @@ const attendanceCCT = [
     lastName: "Doe",
     contactNumber: "123-456-7890",
     status: "ONLINE",
+    rsvp: "YES",
     date: "2024-03-01",
   },
   {
@@ -22,6 +23,7 @@ const attendanceCCT = [
     lastName: "Smith",
     contactNumber: "987-654-3210",
     status: "OFFLINE",
+    rsvp: "NO",
     date: "2024-03-02",
   },
   {
@@ -32,6 +34,7 @@ const attendanceCCT = [
     lastName: "Johnson",
     contactNumber: "456-789-0123",
     status: "ONLINE",
+    rsvp: "YES",
     date: "2024-03-03",
   },
   {
@@ -43,6 +46,7 @@ const attendanceCCT = [
     lastName: "Brown",
     contactNumber: "789-012-3456",
     status: "OFFLINE",
+    rsvp: "NO",
     date: "2024-03-04",
   },
   {
@@ -54,6 +58,7 @@ const attendanceCCT = [
     lastName: "Adams",
     contactNumber: "234-567-8901",
     status: "ONLINE",
+    rsvp: "YES",
     date: "2024-03-05",
   },
   {
@@ -65,6 +70,7 @@ const attendanceCCT = [
     lastName: "Wilson",
     contactNumber: "567-890-1234",
     status: "ONLINE",
+    rsvp: "YES",
     date: "2024-03-06",
   },
   {
@@ -75,6 +81,7 @@ const attendanceCCT = [
     lastName: "Jones",
     contactNumber: "345-678-9012",
     status: "OFFLINE",
+    rsvp: "NO",
     date: "2024-03-01",
   },
   {
@@ -85,6 +92,7 @@ const attendanceCCT = [
     lastName: "Lee",
     contactNumber: "901-234-5678",
     status: "ONLINE",
+    rsvp: "YES",
     date: "2024-03-02",
   },
   {
@@ -95,6 +103,7 @@ const attendanceCCT = [
     lastName: "Garcia",
     contactNumber: "678-901-2345",
     status: "OFFLINE",
+    rsvp: "NO",
     date: "2024-03-03",
   },
   {
@@ -106,6 +115,7 @@ const attendanceCCT = [
     lastName: "Martinez",
     contactNumber: "123-456-7890",
     status: "ONLINE",
+    rsvp: "YES",
     date: "2024-03-04",
   },
 ];
@@ -135,12 +145,11 @@ function AttendanceCCT() {
               }
             >
               <th className="text-xs text-gray-500 py-3">STATUS</th>
-              <th className="text-xs text-gray-500 py-3">FIRST NAME</th>
-              <th className="text-xs text-gray-500 py-3">LAST NAME</th>
+              <th className="text-xs text-gray-500 py-3">RSVP</th>
+              <th className="text-xs text-gray-500 py-3">NAME</th>
+
               <th className="text-xs text-gray-500 py-3">CONTACT NUMBER</th>
-              <th className="text-xs text-gray-500 py-3">
-                SCHEDULED SESSION NAME
-              </th>
+
               <th className="text-xs text-gray-500 py-3">SESSION NAME</th>
               <th className="text-xs text-gray-500 py-3">DESCRIPTION</th>
 
@@ -165,17 +174,15 @@ function AttendanceCCT() {
                   )}
                 </td>
                 <td className=" whitespace-nowrap text-center py-5 px-8">
-                  {attendanceCCT.firstName}
+                  {attendanceCCT.rsvp}
                 </td>
                 <td className=" whitespace-nowrap text-center py-5 px-8">
-                  {attendanceCCT.lastName}
+                  {`${attendanceCCT.firstName}${attendanceCCT.lastName}`}
                 </td>
                 <td className=" whitespace-nowrap text-center py-5 px-8">
                   {attendanceCCT.contactNumber}
                 </td>
-                <td className=" whitespace-nowrap text-center py-5 px-8">
-                  {attendanceCCT.scheduledSessionName}
-                </td>
+
                 <td className=" whitespace-nowrap text-center py-5 px-8">
                   {attendanceCCT.sessionName}
                 </td>

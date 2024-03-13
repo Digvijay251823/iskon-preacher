@@ -10,15 +10,16 @@ function LoginComponent() {
   // const [errorMessage, dispatch] = useFormState(authenticate, undefined);
 
   const Navigate = useNavigate();
-  useEffect(() => {
-    if (state.Authentication.isAuthenticated || sSubmitted) {
-      Navigate(-1);
-    }
-  }, [state, Navigate, sSubmitted]);
+
   console.log(state.Authentication.isAuthenticated);
   const handleSubmit = (e) => {
     e.preventDefault();
     localStorage.setItem("AUTHENTICATED", true);
+    if (isEmail === "rasamritagaur.rns@gmail.com") {
+      Navigate("/cct/analytics");
+    } else {
+      Navigate("/counseler/analytics");
+    }
     dispatch({ type: "LOGIN" });
     setSubmitted(true);
   };

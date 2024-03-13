@@ -26,7 +26,7 @@ function pickRandomNumber(arr) {
   return arr[randomIndex];
 }
 
-function Scanner() {
+function ScannerCCT() {
   const { state } = useMyContext();
   const counselerId = pickRandomNumber(numbers);
 
@@ -47,50 +47,8 @@ function Scanner() {
                 : "bg-stone-800 border-b-stone-700"
             } flex items-center gap-2 text-xl`}
           >
-            <TbClockCheck />
-            Attendance
-          </div>
-          <div className="flex items-center justify-evenly w-full text-blue-700 py-4">
-            <AttendanceLink url={`/attendance/${counselerId}`} />
-          </div>
-        </div>
-        <div
-          className={`border w-full rounded-xl flex flex-col ${
-            state.Theme.Theme === "light"
-              ? "border-gray-300"
-              : "border-stone-700"
-          } flex items-center gap-2 text-xl`}
-        >
-          <div
-            className={` border-b w-full py-1.5 px-5 rounded-t-xl ${
-              state.Theme.Theme === "light"
-                ? "bg-gray-200 border-b-gray-300"
-                : "bg-stone-800 border-b-stone-700"
-            } flex items-center gap-2 text-xl`}
-          >
-            <PiClockClockwiseDuotone />
-            Future Sessions (RSVP)
-          </div>
-          <div className="flex items-center justify-evenly w-full text-blue-700 py-4">
-            <AttendanceLink url={`/rsvp/${counselerId}`} />
-          </div>
-        </div>
-        <div
-          className={`border w-full rounded-xl flex flex-col ${
-            state.Theme.Theme === "light"
-              ? "border-gray-300"
-              : "border-stone-700"
-          } flex items-center gap-2 text-xl`}
-        >
-          <div
-            className={` border-b w-full py-1.5 px-5 rounded-t-xl ${
-              state.Theme.Theme === "light"
-                ? "bg-gray-200 border-b-gray-300"
-                : "bg-stone-800 border-b-stone-700"
-            } flex items-center gap-2 text-xl`}
-          >
             <MdOutlineWorkspacePremium />
-            Activity
+            Seva
           </div>
           <div className="flex items-center justify-evenly w-full py-4">
             <AttendanceLink url={`/activity/${counselerId}`} />
@@ -138,33 +96,12 @@ function Scanner() {
             <AttendanceLink url={`/counselorchange`} />
           </div>
         </div>
-        <div
-          className={`border w-full rounded-xl flex flex-col ${
-            state.Theme.Theme === "light"
-              ? "border-gray-300"
-              : "border-stone-700"
-          } flex items-center gap-2 text-xl`}
-        >
-          <div
-            className={` border-b w-full py-1.5 px-5 rounded-t-xl ${
-              state.Theme.Theme === "light"
-                ? "bg-gray-200 border-b-gray-300"
-                : "bg-stone-800 border-b-stone-700"
-            } flex items-center gap-2 text-xl`}
-          >
-            <LiaPrayingHandsSolid />
-            Counselee meeting
-          </div>
-          <div className="flex items-center justify-evenly w-full text-blue-700 py-4">
-            <AttendanceLink url={`/counseleemeeting/${counselerId}`} />
-          </div>
-        </div>
       </div>
     </div>
   );
 }
 
-export default Scanner;
+export default ScannerCCT;
 
 const CopyUrlComponent = () => {
   const [isCopied, setIsCopied] = useState(false);

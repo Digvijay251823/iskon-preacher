@@ -32,7 +32,7 @@ function CCTHeader() {
         className={`px-5 flex items-center justify-between border-b ${
           state.Theme.Theme === "light"
             ? "bg-gray-300 text-gray-700 border-gray-200"
-            : "bg-green-950 text-white border-stone-700"
+            : "bg-blue-950 text-white border-stone-700"
         }`}
       >
         <div className="flex items-center justify-center py-3 lg:hidden">
@@ -48,7 +48,7 @@ function CCTHeader() {
                 className={`px-4 py-5 text-lg transition-colors duration-500 
           ${
             pathname === "/cct/analytics"
-              ? "border-b border-b-purple-700 text-purple-700"
+              ? "border-b border-b-purple-600 text-purple-600"
               : ""
           }
           `}
@@ -61,7 +61,7 @@ function CCTHeader() {
                 className={`px-4 py-5 text-lg transition-colors duration-500 
           ${
             pathname === "/cct/counselers"
-              ? "border-b border-b-purple-700 text-purple-700"
+              ? "border-b border-b-purple-600 text-purple-600"
               : ""
           }
           `}
@@ -74,7 +74,7 @@ function CCTHeader() {
                 className={`px-4 py-5 text-lg transition-colors duration-500 
           ${
             pathname === "/cct/sessions"
-              ? "border-b border-b-purple-700 text-purple-700"
+              ? "border-b border-b-purple-600 text-purple-600"
               : ""
           }
           `}
@@ -87,7 +87,7 @@ function CCTHeader() {
                 className={`px-4 py-5 text-lg transition-colors duration-500 
           ${
             pathname === "/cct/seva"
-              ? "border-b border-b-purple-700 text-purple-700"
+              ? "border-b border-b-purple-600 text-purple-600"
               : ""
           }
           `}
@@ -100,7 +100,7 @@ function CCTHeader() {
                 className={`px-4 py-5 text-lg transition-colors duration-500 
           ${
             pathname === "/cct/attendance"
-              ? "border-b border-b-purple-700 text-purple-700"
+              ? "border-b border-b-purple-600 text-purple-600"
               : ""
           }
           `}
@@ -114,7 +114,7 @@ function CCTHeader() {
                 className={`px-4 py-5 text-lg transition-colors duration-500 flex items-center gap-3 
           ${
             pathname === "/cct/counselees"
-              ? "border-b border-b-purple-700 text-purple-700"
+              ? "border-b border-b-purple-600 text-purple-600"
               : ""
           }
           `}
@@ -127,7 +127,7 @@ function CCTHeader() {
                 className={`px-4 py-5 text-lg transition-colors duration-500 flex items-center gap-3 
           ${
             pathname === "/cct/scan"
-              ? "border-b border-b-purple-700 text-purple-700"
+              ? "border-b border-b-purple-600 text-purple-600"
               : ""
           }
           `}

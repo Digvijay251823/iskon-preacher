@@ -30,6 +30,10 @@ import SessionsCCT from "./cct/Sessions/Sessions";
 import CounselersCCT from "./cct/Counselees/Counselers2";
 import CounselerChangeForm from "./CounselerChange/CounselerChangeForm";
 import CounseleeList from "./cct/CounseleeList/CounseleeList";
+import AttendanceCounselorCCT from "./cct/CCTGiveAttendance";
+import RsvpCCT from "./cct/CCTGiveRsvp";
+import ScannerCCT from "./cct/Scanner";
+import CounseleeMettingAttendance from "./App/CounseleeMeeting/CounseleeMeeting";
 
 function AllRoutes() {
   const { state, dispatch } = useMyContext();
@@ -80,7 +84,7 @@ function AllRoutes() {
         <Route path="/counseler/sadhana" element={<Sadhana />} />
         <Route path="/counseler/configure" element={<ConfigureSadhana />} />
         <Route path="/counseler/scan" element={<Scanner />} />
-        <Route path="/cct/scan" element={<Scanner />} />
+        <Route path="/cct/scan" element={<ScannerCCT />} />
         <Route path="/cct/analytics" element={<AnalyticsCCT />} />
         <Route path="/cct/counselers" element={<CounselersCCT />} />
         <Route path="/cct/seva" element={<SevaCCT />} />
@@ -91,8 +95,9 @@ function AllRoutes() {
         <Route path="/register" element={<RegisterCounselee />} />
         <Route
           path="/attendance/cbm/:cbmsessionId"
-          element={<AttendanceCounselee />}
+          element={<AttendanceCounselorCCT />}
         />
+        <Route path="/rsvp/cbm/:cbmsessionId" element={<RsvpCCT />} />
         <Route
           path="/attendance/:counselerId"
           element={<AttendanceCounselee />}
@@ -102,7 +107,11 @@ function AllRoutes() {
         <Route path="/activity/:counselerId" element={<ActivityCounselee />} />
 
         <Route path="/auth/signin" element={<Login />} />
-        <Route path="/counselerchange" element={<CounselerChangeForm />} />
+        <Route path="/counselorchange" element={<CounselerChangeForm />} />
+        <Route
+          path="/counseleemeeting/:counselerId"
+          element={<CounseleeMettingAttendance />}
+        />
       </Routes>
     </div>
   );

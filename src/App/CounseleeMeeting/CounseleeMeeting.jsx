@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import { useMyContext } from "../../store/context";
-
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { MdKeyboardArrowDown } from "react-icons/md";
 import { FiClock } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
+import { useMyContext } from "../../store/context";
 
 const sessions = [
   {
     id: 1,
     scheduledSessionName: "Session 1",
-    sessionName: "Introduction to Counseling",
+    sessionName: "Pre Janmashtami Planning",
     description: "An introductory session to the field of counseling.",
     createdBy: "John Doe",
     durationInMinutes: 60,
@@ -79,11 +79,11 @@ const counseleesData = [
     numberOfSessionsAttended: 30,
   },
   {
-    CounselerName: "Sujay Nimai Pr",
-    firstName: "Bob",
-    lastName: "Johnson",
-    contactNumber: "444-555-6666",
-    whatsAppNumber: "444-555-6666",
+    CounselerName: "Rasamrita Gaur Pr",
+    firstName: "Saurabh",
+    lastName: "Khatri",
+    contactNumber: "0123456789",
+    whatsAppNumber: "0123456789",
     email: "bob.johnson@example.com",
     address: "789 Oak St, City, Country",
     gender: "Male",
@@ -211,26 +211,37 @@ function findCounselorByContactNumber(inputContactNumber) {
   }
 }
 
-function RSVPCounselee() {
+function CounseleeMettingAttendance() {
   const { state } = useMyContext();
+  const [isSelectionOpenSelection, setisSelectionOpenSelection] =
+    useState(false);
+  const [fetchedData, setFetchData] = useState({});
+
   const navigate = useNavigate();
+  const [FIRSTNAME, setFirstName] = useState("");
+  const [LASTNAME, setLastName] = useState("");
+  const [WANUMBER, setWaNumber] = useState("");
   const [CONTACTNUMBER, setContactNumber] = useState("");
+  const [GENDER, setGender] = useState("");
+  const [DOB, setDob] = useState("");
   const handleSubmitUser = (e) => {
     e.preventDefault();
     const user = findCounselorByContactNumber(CONTACTNUMBER);
     if (!user) {
       navigate("/register");
+      return;
+    } else {
+      setFetchData(user);
     }
   };
-
   return (
     <div className="flex flex-col items-center justify-center min-h-screen overflow-x-hidden">
-      <h1 className="font-semibold text-red-500 text-xl mb-10">RSVP</h1>
+      <h1 className="font-semibold text-red-500 text-xl mb-10">Attendance</h1>
 
       <div className={`flex items-center justify-center lg:gap-5  w-screen`}>
         <div className="lg:block hidden">
           <img
-            src={require("../../assets/sessionsSchedule.png")}
+            src={require("../../assets/counselle.png")}
             height={400}
             className="h-[400px]"
             alt="addcounsellee"
@@ -265,21 +276,74 @@ function RSVPCounselee() {
               SEARCH NUMBER
             </button>
           </form>
-          <div className="lg:w-[500px] w-[90vw]">
+          <div
+            className={`flex flex-col gap-2 items-center ${
+              Object.keys(fetchedData).length > 0 ? "block" : "hidden"
+            }`}
+          >
+            !welcome
+            <p className="text-red-500 text-xl font-bold">
+              {`${fetchedData.firstName} ${fetchedData.lastName}`}
+            </p>
+          </div>
+          <div
+            className={`lg:w-[500px] w-[90vw] ${
+              Object.keys(fetchedData).length > 0 ? "block" : "hidden"
+            }`}
+          >
             <div className="mb-5">
               <div className="flex items-center gap-3 text-xl font-bold">
                 <FiClock />
-                <h1 className="">CONFIRM RSVP</h1>
+                <h1 className="">SELECT A SESSION</h1>
               </div>
               <p className="text-gray-400">
-                click yes if you want to confirm your presense for this session
+                select a session below that you want to mark your attendance of
               </p>
             </div>
 
-            <div className="flex flex-col gap-1 w-full">
-              <p className="font-semibold"> * UPCOMMING SESSION</p>
-              <RSVPComponent session={sessions[0]} />
-            </div>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+              }}
+              className="PX-5 flex flex-col gap-3"
+            >
+              <div className="flex gap-5 w-full pb-5">
+                <label
+                  htmlFor="ONLINE"
+                  className="flex items-center gap-3 font-semibold"
+                >
+                  <input type="checkbox" id="ONLINE" />
+                  ONLINE
+                </label>
+                <label
+                  htmlFor="contactNumber"
+                  className="flex items-center gap-3 font-semibold"
+                >
+                  <input type="checkbox" />
+                  OFFLINE
+                </label>
+              </div>
+              <div className="flex flex-col gap-1 w-full">
+                <p className="font-semibold"> * LATEST SESSION</p>
+                <label
+                  htmlFor="contactNumber"
+                  className="flex items-center gap-3 font-semibold"
+                >
+                  <input type="radio" />
+                  {sessions[0].sessionName}
+                </label>
+              </div>
+              <button
+                className={`flex items-center w-full justify-center font-semibold border my-5 rounded-xl py-2 ${
+                  state.Theme.Theme === "light"
+                    ? "border-blue-800 bg-blue-500 text-white"
+                    : "border-stone-700 bg-blue-900"
+                }`}
+                type="submit"
+              >
+                SUBMIT
+              </button>
+            </form>
           </div>
         </div>
       </div>
@@ -287,39 +351,114 @@ function RSVPCounselee() {
   );
 }
 
-export default RSVPCounselee;
+export default CounseleeMettingAttendance;
 
-function RSVPComponent({ session }) {
+function MenuIconAndDropDown({
+  isSelectionOpen,
+  toggleSelection,
+  setSelected,
+}) {
   const { state } = useMyContext();
+  const menuRef = useRef();
+  const [selectedOption, setSelectedOption] = useState("");
+  const [modalStyle, setModalStyle] = useState({
+    transform: "scale(0.95)",
+    opacity: 0,
+  });
+  const [isClosing, setIsClosing] = useState(false);
+
+  useEffect(() => {
+    if (isSelectionOpen) {
+      // Open modal animation
+      setTimeout(() => {
+        setModalStyle({
+          transform: "scale(1)",
+          opacity: 1,
+        });
+      }, 50); // Delay the transition slightly for better visual effect
+    } else {
+      // Close modal animation
+      setModalStyle({
+        transform: "scale(0.95)",
+        opacity: 0,
+      });
+      setTimeout(() => {
+        setIsClosing(false);
+      }, 3000); // Adjust this duration according to your transition duration
+    }
+  }, [isSelectionOpen]);
+
+  const closeModal = useCallback(() => {
+    setIsClosing(true);
+    toggleSelection(false);
+  }, [toggleSelection]);
+
+  // Attach click outside listener
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        closeModal(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [toggleSelection, closeModal]);
   return (
-    <div
-      className={`flex flex-col items-center justify-between border px-2 py-2 rounded-xl gap-5 w-full ${
-        state.Theme.Theme === "light"
-          ? "border-gray-300"
-          : "border-stone-700 bg-stone-900"
-      }`}
-    >
-      <p className="font-semibold text-lg">{session.sessionName}</p>
-      <div className="flex items-center gap-5 text-lg">
-        <button
-          className={`border ${
+    <div className="relative inline-block text-left" ref={menuRef}>
+      <button
+        type="button"
+        className={`flex items-center justify-between border px-2 py-2 rounded-xl gap-5 w-full ${
+          state.Theme.Theme === "light"
+            ? "border-gray-300"
+            : "border-stone-700 bg-stone-900"
+        }`}
+        id="options-menu"
+        aria-haspopup="true"
+        aria-expanded="true"
+        onClick={() => toggleSelection(!isSelectionOpen)}
+      >
+        {selectedOption === "" ? "Select" : selectedOption}
+        <MdKeyboardArrowDown />
+      </button>
+      {isSelectionOpen && (
+        <div
+          className={`origin-top-left absolute bottom-0 mb-12 w-full rounded-lg shadow-lg z-[1000] ${
             state.Theme.Theme === "light"
-              ? "bg-green-200 border-green-300"
-              : "bg-green-800 border-green-600"
-          } px-4 py-1 rounded-lg`}
+              ? "bg-white border-gray-300"
+              : "bg-stone-900 border border-stone-700"
+          } ring-1 ring-black ring-opacity-5 focus:outline-none py-1 px-1`}
+          role="menu"
+          aria-orientation="vertical"
+          aria-labelledby="options-menu"
+          style={{
+            ...modalStyle,
+            transition: "transform 0.3s ease-out, opacity 0.3s ease-out",
+          }}
+          onClick={(e) => e.stopPropagation()}
         >
-          YES
-        </button>
-        <button
-          className={`border ${
-            state.Theme.Theme === "light"
-              ? "bg-red-200 border-red-300"
-              : "bg-red-800 border-red-600"
-          } px-4 py-1 rounded-lg`}
-        >
-          NO
-        </button>
-      </div>
+          <ul className="flex flex-col gap-3" role="none">
+            {sessions?.map((session, index) => (
+              <li
+                key={index}
+                onClick={() => {
+                  setSelectedOption(session.sessionName);
+                  setSelected(session.sessionName);
+                  toggleSelection(false);
+                }}
+                className={`px-2 py-1.5 rounded-lg ${
+                  state.Theme.Theme === "light"
+                    ? "hover:bg-gray-100"
+                    : "hover:bg-stone-700"
+                }`}
+              >
+                {session.sessionName}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }

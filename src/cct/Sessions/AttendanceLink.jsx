@@ -13,7 +13,7 @@ import { AiOutlineLink } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import CopyToClipboard from "react-copy-to-clipboard";
 
-function AttendanceLink({ sessionId }) {
+function AttendanceLink({ sessionId, TYPE }) {
   const [isOpen, setIsOpen] = useState();
   const [isCopied, setIsCopied] = useState(false);
   const { state } = useMyContext();
@@ -28,14 +28,14 @@ function AttendanceLink({ sessionId }) {
   return (
     <>
       <div className="flex items-center gap-5 px-4">
-        <Link to={`/attendance/cbm/${sessionId}`} aria-disabled={sessionId}>
+        <Link to={`/${TYPE}/cbm/${sessionId}`} aria-disabled={sessionId}>
           <button className="flex items-center gap-1 text-blue-700 underline">
             <AiOutlineLink />
             Link
           </button>
         </Link>
         <CopyToClipboard
-          text={`${window.location.host}/attendance/cbm/${sessionId}`}
+          text={`${window.location.host}/${TYPE}/cbm/${sessionId}`}
           onCopy={() => setIsCopied(true)}
         >
           {isCopied ? (
@@ -53,7 +53,7 @@ function AttendanceLink({ sessionId }) {
           onClick={() => setIsOpen(true)}
         >
           <HiQrCode
-            values={`${window.location.host}/attendance/cbm/${sessionId}`}
+            values={`${window.location.host}/${TYPE}/cbm/${sessionId}`}
           />
         </button>
       </div>

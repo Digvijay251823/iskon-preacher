@@ -7,8 +7,8 @@ const counseler = [
   { initiatedName: "Ram Das	", id: 6 },
   { initiatedName: "Krishna Sakhi DD	", id: 7 },
   { initiatedName: "Prem Bhakta Das	", id: 8 },
-  { initiatedName: "Vaishnavi DD	", id: 9 },
-  { initiatedName: "Gaur Bhakta Das	", id: 10 },
+  { initiatedName: "Rasamrita Gaur Pr", id: 9 },
+  { initiatedName: "Sujay Nimai Pr", id: 10 },
 ];
 
 export default counseler;
