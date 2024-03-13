@@ -8,7 +8,7 @@ const content = [
   {
     id: 3,
     description: null,
-    sevaType: "ALL",
+    sevaType: "Monring Program",
     counselerId: 1,
     counselerFirstName: "Digvijay",
     counselerLastName: "Edake",
@@ -26,7 +26,7 @@ const content = [
     id: 4,
     description: null,
 
-    sevaType: "CHILDREN",
+    sevaType: "Deity",
     counselerId: 1,
     counselerFirstName: "Digvijay",
     counselerLastName: "Edake",
@@ -44,7 +44,7 @@ const content = [
     id: 5,
     description: null,
 
-    sevaType: "CHILDREN",
+    sevaType: "Deity",
     counselerId: 8,
     counselerFirstName: "Aradhana",
     counselerLastName: "Bandari",
@@ -62,7 +62,7 @@ const content = [
     id: 6,
     description: null,
 
-    sevaType: "CHILDREN",
+    sevaType: "Deity",
     counselerId: 10,
     counselerFirstName: "Hrishikesh",
     counselerLastName: "Bandari",
@@ -80,7 +80,7 @@ const content = [
     id: 7,
     description: null,
 
-    sevaType: "ALL",
+    sevaType: "Monring Program",
     counselerId: 12,
     counselerFirstName: "Hrishikesh",
     counselerLastName: "Bandari",
@@ -97,7 +97,7 @@ const content = [
   {
     id: 8,
     description: null,
-    sevaType: "ALL",
+    sevaType: "Monring Program",
     counselerId: 12,
     counselerFirstName: "Hrishikesh",
     counselerLastName: "Bandari",
@@ -115,7 +115,7 @@ const content = [
     id: 9,
     description: null,
 
-    sevaType: "ALL",
+    sevaType: "Monring Program",
     counselerId: 12,
     counselerFirstName: "Hrishikesh",
     counselerLastName: "Bandari",
@@ -133,7 +133,7 @@ const content = [
     id: 10,
     description: null,
 
-    sevaType: "ALL",
+    sevaType: "Kitchen Seva",
     counselerId: 1,
     counselerFirstName: "Digvijay",
     counselerLastName: "Edake",
@@ -150,7 +150,7 @@ const content = [
   {
     id: 11,
     description: null,
-    sevaType: "ALL",
+    sevaType: "Kitchen Seva",
     counselerId: 14,
     counselerFirstName: "Gaitri",
     counselerLastName: "Allum",
@@ -167,7 +167,7 @@ const content = [
   {
     id: 12,
     description: null,
-    sevaType: "ALL",
+    sevaType: "Kitchen Seva",
     levelStatus: "ACTIVE",
     counselerId: 14,
     counselerFirstName: "Gaitri",
