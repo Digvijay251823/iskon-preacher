@@ -291,6 +291,21 @@ function RSVPCounselee() {
             </button>
           </form>
           <div
+            className={`flex flex-col gap-2 items-center ${
+              Object.keys(fetchedData).length > 0 ? "block" : "hidden"
+            }`}
+          >
+            !welcome
+            <p className="text-red-500 text-xl font-bold">
+              {`${fetchedData.firstName} ${fetchedData.lastName}`}
+            </p>
+            <div className="pt-3 pb-3">
+              <p className="text-red-500 text-xl font-bold">
+                Counseler :{`${fetchedData.CounselerName}`}
+              </p>
+            </div>
+          </div>
+          <div
             className={`lg:w-[500px] w-[90vw] ${
               Object.keys(fetchedData).length > 0 ? "block" : "hidden"
             }`}

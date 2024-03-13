@@ -325,9 +325,9 @@ function Attendance() {
             <p className="text-red-500 text-xl font-bold">
               {`${fetchedData.firstName} ${fetchedData.lastName}`}
             </p>
-            <div className="pt-5">
+            <div className="pt-3 pb-3">
               <p className="text-red-500 text-xl font-bold">
-                {`${fetchedData.CounselerName}`}
+                Counseler :{`${fetchedData.CounselerName}`}
               </p>
             </div>
           </div>
