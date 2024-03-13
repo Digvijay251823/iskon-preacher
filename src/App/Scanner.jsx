@@ -14,7 +14,6 @@ import { TbClockCheck } from "react-icons/tb";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { PiClockClockwiseDuotone } from "react-icons/pi";
 import { LiaPrayingHandsSolid } from "react-icons/lia";
-import { RiLinksLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import QRCode from "react-qr-code";
 import Modal from "../App/components/Modal";
@@ -23,7 +22,7 @@ function Scanner() {
   const { state } = useMyContext();
   return (
     <div className="flex items-center justify-center min-h-screen">
-      <div className="flex flex-col items-center gap-5">
+      <div className="grid md:grid-cols-2 gap-5 ">
         <div
           className={`border w-full rounded-xl flex flex-col ${
             state.Theme.Theme === "light"
@@ -41,8 +40,8 @@ function Scanner() {
             <TbClockCheck />
             Attendance
           </div>
-          <div className="flex items-center justify-evenly w-full py-4">
-            <AttendanceLink url={"http://google.com"} />
+          <div className="flex items-center justify-evenly w-full text-blue-700 py-4">
+            <AttendanceLink url={`${window.location.host}/attendance/`} />
           </div>
         </div>
         <div
@@ -62,7 +61,7 @@ function Scanner() {
             <PiClockClockwiseDuotone />
             Future Sessions (RSVP)
           </div>
-          <div className="flex items-center justify-evenly w-full py-4">
+          <div className="flex items-center justify-evenly w-full text-blue-700 py-4">
             <AttendanceLink url={"http://google.com"} />
           </div>
         </div>
@@ -104,7 +103,28 @@ function Scanner() {
             <LiaPrayingHandsSolid />
             Sadhana
           </div>
-          <div className="flex items-center justify-evenly w-full py-4">
+          <div className="flex items-center justify-evenly w-full text-blue-700 py-4">
+            <AttendanceLink url={"http://google.com"} />
+          </div>
+        </div>
+        <div
+          className={`border w-full rounded-xl flex flex-col ${
+            state.Theme.Theme === "light"
+              ? "border-gray-300"
+              : "border-stone-700"
+          } flex items-center gap-2 text-xl`}
+        >
+          <div
+            className={` border-b w-full py-1.5 px-5 rounded-t-xl ${
+              state.Theme.Theme === "light"
+                ? "bg-gray-200 border-b-gray-300"
+                : "bg-stone-800 border-b-stone-700"
+            } flex items-center gap-2 text-xl`}
+          >
+            <LiaPrayingHandsSolid />
+            Counseler Change Form
+          </div>
+          <div className="flex items-center justify-evenly w-full text-blue-700 py-4">
             <AttendanceLink url={"http://google.com"} />
           </div>
         </div>

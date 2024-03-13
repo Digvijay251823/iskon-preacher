@@ -37,6 +37,7 @@ function Header() {
               : "bg-stone-950 text-white border-stone-700"
           }`}
         >
+          Counseler
           <div className="flex items-center justify-center py-3 lg:hidden">
             <MenuIconAndDropDown
               isSelectionOpen={isSelectionOpen}

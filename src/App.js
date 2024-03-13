@@ -27,8 +27,9 @@ import AnalyticsCCT from "./cct/Analytics";
 import SevaCCT from "./cct/Activities/SevaCCT";
 import AttendanceCCT from "./cct/Attendance/Attendance";
 import SessionsCCT from "./cct/Sessions/Sessions";
-import CounselersCCT from "./cct/Counselees/Counselers";
+import CounselersCCT from "./cct/Counselees/Counselers2";
 import CounselerChangeForm from "./CounselerChange/CounselerChangeForm";
+import CounseleeList from "./cct/CounseleeList/CounseleeList";
 
 function AllRoutes() {
   const { state, dispatch } = useMyContext();
@@ -80,11 +81,12 @@ function AllRoutes() {
         <Route path="/counseler/configure" element={<ConfigureSadhana />} />
         <Route path="/counseler/scan" element={<Scanner />} />
         <Route path="/cct/scan" element={<Scanner />} />
-        <Route path="/cct/analytics" element={<Analytics />} />
+        <Route path="/cct/analytics" element={<AnalyticsCCT />} />
         <Route path="/cct/counselers" element={<CounselersCCT />} />
         <Route path="/cct/seva" element={<SevaCCT />} />
         <Route path="/cct/sessions" element={<SessionsCCT />} />
         <Route path="/cct/attendance" element={<AttendanceCCT />} />
+        <Route path="/cct/counselees" element={<CounseleeList />} />
 
         <Route path="/register" element={<RegisterCounselee />} />
         <Route

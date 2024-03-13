@@ -31,8 +31,8 @@ function CCTHeader() {
       <div
         className={`px-5 flex items-center justify-between border-b ${
           state.Theme.Theme === "light"
-            ? "bg-white text-gray-700 border-gray-200"
-            : "bg-stone-950 text-white border-stone-700"
+            ? "bg-gray-300 text-gray-700 border-gray-200"
+            : "bg-green-950 text-white border-stone-700"
         }`}
       >
         <div className="flex items-center justify-center py-3 lg:hidden">
@@ -109,6 +109,19 @@ function CCTHeader() {
               </li>
             </Link>
 
+            <Link to={"/cct/counselees"}>
+              <li
+                className={`px-4 py-5 text-lg transition-colors duration-500 flex items-center gap-3 
+          ${
+            pathname === "/cct/counselees"
+              ? "border-b border-b-purple-700 text-purple-700"
+              : ""
+          }
+          `}
+              >
+                Counselees
+              </li>
+            </Link>
             <Link to={"/cct/scan"}>
               <li
                 className={`px-4 py-5 text-lg transition-colors duration-500 flex items-center gap-3 

@@ -1,7 +1,12 @@
 import React from "react";
+import Dashboard from "./Dashboard/Dashboard";
 
 function AnalyticsCCT() {
-  return <div>AnalyticsCCT</div>;
+  return (
+    <div>
+      <Dashboard />
+    </div>
+  );
 }
 
 export default AnalyticsCCT;
