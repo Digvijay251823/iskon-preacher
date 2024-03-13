@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useMyContext } from "../../store/context";
 
 import { FiClock } from "react-icons/fi";
@@ -79,10 +79,10 @@ const counseleesData = [
     numberOfSessionsAttended: 30,
   },
   {
-    CounselerName: "Sujay Nimai Pr",
-    firstName: "Bob",
-    lastName: "Johnson",
-    contactNumber: "444-555-6666",
+    CounselerName: "Rasamrita Gaur Pr",
+    firstName: "Saurabh",
+    lastName: "Khatri",
+    contactNumber: "0123456789",
     whatsAppNumber: "444-555-6666",
     email: "bob.johnson@example.com",
     address: "789 Oak St, City, Country",
@@ -213,16 +213,43 @@ function findCounselorByContactNumber(inputContactNumber) {
 
 function RSVPCounselee() {
   const { state } = useMyContext();
+  const [isSelectionOpenSelection, setisSelectionOpenSelection] =
+    useState(false);
+  const [fetchedData, setFetchData] = useState({});
+  const [counselerError, setCounselerError] = useState(false);
+
+  console.log(counselerError);
+
+  useEffect(() => {
+    if (Object.keys(fetchedData).length === 0) {
+      return;
+    }
+    const foundCounselor = counseleesData.find(
+      (counselor) => counselor.CounselerName === fetchedData.CounselerName
+    );
+    if (!foundCounselor) {
+      setCounselerError(true);
+    }
+  }, [fetchedData]);
+
   const navigate = useNavigate();
+  const [FIRSTNAME, setFirstName] = useState("");
+  const [LASTNAME, setLastName] = useState("");
+  const [WANUMBER, setWaNumber] = useState("");
   const [CONTACTNUMBER, setContactNumber] = useState("");
+  const [GENDER, setGender] = useState("");
+  const [DOB, setDob] = useState("");
+
   const handleSubmitUser = (e) => {
     e.preventDefault();
     const user = findCounselorByContactNumber(CONTACTNUMBER);
     if (!user) {
       navigate("/register");
+      return;
+    } else {
+      setFetchData(user);
     }
   };
-
   return (
     <div className="flex flex-col items-center justify-center min-h-screen overflow-x-hidden">
       <h1 className="font-semibold text-red-500 text-xl mb-10">RSVP</h1>
@@ -265,7 +292,11 @@ function RSVPCounselee() {
               SEARCH NUMBER
             </button>
           </form>
-          <div className="lg:w-[500px] w-[90vw]">
+          <div
+            className={`lg:w-[500px] w-[90vw] ${
+              Object.keys(fetchedData).length > 0 ? "block" : "hidden"
+            }`}
+          >
             <div className="mb-5">
               <div className="flex items-center gap-3 text-xl font-bold">
                 <FiClock />
@@ -280,6 +311,15 @@ function RSVPCounselee() {
               <p className="font-semibold"> * UPCOMMING SESSION</p>
               <RSVPComponent session={sessions[0]} />
             </div>
+            <button
+              className={`flex items-center w-full justify-center font-semibold border my-5 rounded-xl py-2 ${
+                state.Theme.Theme === "light"
+                  ? "border-blue-800 bg-blue-500 text-white"
+                  : "border-stone-700 bg-blue-900"
+              }`}
+            >
+              SUBMIT
+            </button>
           </div>
         </div>
       </div>

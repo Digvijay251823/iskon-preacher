@@ -228,15 +228,28 @@ function Attendance() {
     useState(false);
   const [fetchedData, setFetchData] = useState({});
   const [counselerError, setCounselerError] = useState(false);
+  const [counseler, setCounseler] = useState({});
+
+  useState(() => {
+    const foundCounselor = counselerData.find((counselor) =>
+      counselor.CounselerName === fetchedData.CounselerName ? counseler : null
+    );
+    if (foundCounselor) {
+      setCounseler(foundCounselor);
+    }
+  }, []);
 
   useEffect(() => {
-    const foundCounselor = counseleesData.find(
-      (counselor) => counselor.CounselerName === fetchedData.CounselerName
-    );
-    if (!foundCounselor) {
+    if (
+      Object.keys(fetchedData).length === 0 ||
+      Object.keys(counseler).length === 0
+    ) {
+      return;
+    }
+    if (counseler.CounselerName !== fetchedData.CounselerName) {
       setCounselerError(true);
     }
-  }, [fetchedData]);
+  }, [fetchedData, counseler]);
 
   const navigate = useNavigate();
   const [FIRSTNAME, setFirstName] = useState("");
@@ -312,6 +325,11 @@ function Attendance() {
             <p className="text-red-500 text-xl font-bold">
               {`${fetchedData.firstName} ${fetchedData.lastName}`}
             </p>
+            <div className="pt-5">
+              <p className="text-red-500 text-xl font-bold">
+                {`${fetchedData.CounselerName}`}
+              </p>
+            </div>
           </div>
           <div
             className={`lg:w-[500px] w-[90vw] ${

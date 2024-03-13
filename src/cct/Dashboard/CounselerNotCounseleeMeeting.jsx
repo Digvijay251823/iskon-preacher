@@ -29,7 +29,7 @@ function CounselerNotConductingCounseleeMeeting() {
       },
       title: {
         display: true,
-        text: "DEVOTEE CONDUCTING COUNSELEE MEETING BELOW THRESHOLD",
+        text: "LIST OF COUNSELERS-CONDUCTING COUNSELEE MEETING BELOW THRESHOLD(3 MONTHS)",
       },
     },
   };

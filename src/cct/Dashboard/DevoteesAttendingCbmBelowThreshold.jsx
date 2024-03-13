@@ -29,7 +29,7 @@ function DevoteesAttendingCbmBelowThreshold() {
       },
       title: {
         display: true,
-        text: "DEVOTEE ATTENDED CBM BELOW THRESHOLD",
+        text: "COUNSELOR ATTENDED CBM BELOW THRESHOLD(6 MONTHS)",
       },
     },
   };

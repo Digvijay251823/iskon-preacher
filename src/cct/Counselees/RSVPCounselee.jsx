@@ -69,7 +69,6 @@ function RSVPCounselee() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen overflow-x-hidden">
       <h1 className="font-semibold text-red-500 text-xl mb-10">RSVP</h1>
-
       <div className={`flex items-center justify-center lg:gap-5  w-screen`}>
         <div className="lg:block hidden">
           <img

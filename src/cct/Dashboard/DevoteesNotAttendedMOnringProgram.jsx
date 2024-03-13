@@ -29,7 +29,7 @@ function DevoteesNotAttendedMOnringProgram() {
       },
       title: {
         display: true,
-        text: "DEVOTEE ATTENDED MORNING PROGRAM BELOW THRESHOLD",
+        text: "COUNSELOR ATTENDING MORNING PROGRAM BELOW THRESHOLD(3 MONTHS)",
       },
     },
   };
@@ -49,7 +49,7 @@ function DevoteesNotAttendedMOnringProgram() {
     datasets: [
       {
         label: "ATTENDED MORNING PROGRAMS",
-        data: [10, 30, 20, 30, 42, 30, 10, 40, 50, 30, 60],
+        data: [10, 18, 15, 11, 12, 8, 11, 12, 15, 10, 20],
         backgroundColor: `${
           state.Theme.Theme === "light" ? "rgb(139 92 246)" : "rgb(91 33 182)"
         }`,
