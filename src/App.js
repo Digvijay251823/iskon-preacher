@@ -34,6 +34,7 @@ import AttendanceCounselorCCT from "./cct/CCTGiveAttendance";
 import RsvpCCT from "./cct/CCTGiveRsvp";
 import ScannerCCT from "./cct/Scanner";
 import CounseleeMettingAttendance from "./App/CounseleeMeeting/CounseleeMeeting";
+import Seva from "./cct/SevaCCT";
 
 function AllRoutes() {
   const { state, dispatch } = useMyContext();
@@ -98,6 +99,7 @@ function AllRoutes() {
           element={<AttendanceCounselorCCT />}
         />
         <Route path="/rsvp/cbm/:cbmsessionId" element={<RsvpCCT />} />
+        <Route path="/seva/cct" element={<Seva />} />
         <Route
           path="/attendance/:counselerId"
           element={<AttendanceCounselee />}

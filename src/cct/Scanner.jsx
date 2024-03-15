@@ -51,7 +51,7 @@ function ScannerCCT() {
             Seva
           </div>
           <div className="flex items-center justify-evenly w-full py-4">
-            <AttendanceLink url={`/activity/${counselerId}`} />
+            <AttendanceLink url={`/seva`} />
           </div>
         </div>
 
