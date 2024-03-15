@@ -3,7 +3,12 @@ import { useLocation } from "react-router-dom";
 import { useMyContext } from "../store/context";
 import { MdKeyboardArrowDown } from "react-icons/md";
 
-const prabhus = ["Rasamrita Gaur Das"];
+const prabhus = [
+  "Krishna Das & Radha DD",
+  "Nityananda Das & Gaurangi DD",
+  "Balram Das & Krishna Sakhi DD",
+  "Ram Das &	Prem Bhakti DD",
+];
 const matajis = ["Anupam Gopika"];
 
 const sevas = [
@@ -57,16 +62,23 @@ function Seva() {
             </div>
             <div className="flex flex-col gap-3 w-full mt-5">
               <div className="flex flex-col gap-2 w-full">
-                <label className="font-semibold ">Select Your Name</label>
+                <label className="font-semibold ">Select Name</label>
                 <MenuIconAndDropDown
                   DataArr={prabhus}
                   setSelected={(value) => console.log(value)}
                 />
               </div>
-              <div className="flex flex-col gap-2 w-full">
-                <label className="font-semibold ">Select Mataji's Name</label>
+              <div className="flex flex-col gap-2 w-full mt-5">
+                <label className="font-semibold ">Select Location</label>
                 <MenuIconAndDropDown
-                  DataArr={matajis}
+                  position={"up"}
+                  DataArr={[
+                    "NVCC Temple",
+                    "Hinjewadi Center",
+                    "Mayapur Temple",
+                    "Camp Temple",
+                  ]}
+                  defaultVal={"NVCC Temple"}
                   setSelected={(value) => console.log(value)}
                 />
               </div>
@@ -93,20 +105,6 @@ function Seva() {
               </div>
             </div>
 
-            <div className="flex flex-col gap-2 w-full mt-5">
-              <label className="font-semibold ">Select Location</label>
-              <MenuIconAndDropDown
-                position={"up"}
-                DataArr={[
-                  "NVCC Temple",
-                  "Hinjewadi Center",
-                  "Mayapur Temple",
-                  "Camp Temple",
-                ]}
-                setSelected={(value) => console.log(value)}
-              />
-            </div>
-
             <div className="flex justify-center w-full ">
               <button
                 disabled={pathname !== `/sadhana`}
@@ -129,7 +127,7 @@ function Seva() {
 
 export default Seva;
 
-function MenuIconAndDropDown({ setSelected, DataArr, position }) {
+function MenuIconAndDropDown({ setSelected, DataArr, defaultVal, position }) {
   const [isSelectionOpen, toggleSelection] = useState(false);
   const { state } = useMyContext();
   const menuRef = useRef();
@@ -138,6 +136,11 @@ function MenuIconAndDropDown({ setSelected, DataArr, position }) {
     transform: "scale(0.95)",
     opacity: 0,
   });
+  useEffect(() => {
+    if (defaultVal) {
+      setSelectedOption(defaultVal);
+    }
+  }, [defaultVal]);
   const [isClosing, setIsClosing] = useState(false);
 
   useEffect(() => {
@@ -223,8 +226,10 @@ function MenuIconAndDropDown({ setSelected, DataArr, position }) {
                   toggleSelection(false);
                 }}
                 className={`px-2 py-1.5 rounded-lg ${
+                  item === selectedOption && "bg-blue-300"
+                } ${
                   state.Theme.Theme === "light"
-                    ? "hover:bg-gray-100"
+                    ? "hover:bg-gray-100 "
                     : "hover:bg-stone-700"
                 }`}
               >
