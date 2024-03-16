@@ -4,45 +4,15 @@ import { useMyContext } from "../store/context";
 import { MdKeyboardArrowDown } from "react-icons/md";
 
 const SERVER_ENDOPOINT =
-  "http://counsellor-portal-env.eba-mbtr2c2r.ap-south-1.elasticbeanstalk.com/counsellor-portal";
+  "https://counsellor-portal-env.eba-mbtr2c2r.ap-south-1.elasticbeanstalk.com/counsellor-portal";
 
-const prabhus = [
-  {
-    id: 1,
-    name: "Krishna Das",
-    spouseName: " Radha DD",
-    contactNumber: "7620535741",
-    email: "rasamritagaur.rns@gmail.com",
-  },
-  {
-    id: 2,
-    name: "Nityananda Das",
-    spouseName: " Gaurangi DD",
-    contactNumber: "7620535741",
-    email: "rasamritagaur.rns@gmail.com",
-  },
-  {
-    id: 3,
-    name: "Balram Das",
-    spouseName: " Krishna Sakhi DD",
-    contactNumber: "7620535741",
-    email: "rasamritagaur.rns@gmail.com",
-  },
-  {
-    id: 4,
-    name: "Ram Das",
-    spouseName: "	Prem Bhakti DD",
-    contactNumber: "7620535741",
-    email: "rasamritagaur.rns@gmail.com",
-  },
-];
 const sevas = [
-  "mangalAarti",
-  "morningJapa",
-  "sbClass",
-  "deityWorshipSeva",
-  "guruPuja",
-  "otherSeva",
+  "Mangal Arthi",
+  "Morning Japa",
+  "Guru Puja",
+  "SB Class",
+  " Deity Worship Seva",
+  "Other Seva",
 ];
 
 function Seva() {
