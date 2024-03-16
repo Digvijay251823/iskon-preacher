@@ -4,8 +4,7 @@ import { useMyContext } from "../store/context";
 import { MdKeyboardArrowDown } from "react-icons/md";
 
 const SERVER_ENDOPOINT =
-  "https://counsellor-portal-env.eba-mbtr2c2r.ap-south-1.elasticbeanstalk.com/counsellor-portal";
-
+  "http://counsellor-portal-env.eba-mbtr2c2r.ap-south-1.elasticbeanstalk.com/counsellor-portal";
 const sevas = [
   "Mangal Arthi",
   "Morning Japa",
