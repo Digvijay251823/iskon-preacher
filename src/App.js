@@ -35,6 +35,7 @@ import RsvpCCT from "./cct/CCTGiveRsvp";
 import ScannerCCT from "./cct/Scanner";
 import CounseleeMettingAttendance from "./App/CounseleeMeeting/CounseleeMeeting";
 import Seva from "./cct/SevaCCT";
+import ToastComponent from "./App/components/ToastComponent";
 
 function AllRoutes() {
   const { state, dispatch } = useMyContext();
@@ -125,6 +126,7 @@ function App() {
       <Router>
         <Header />
         <AllRoutes />
+        <ToastComponent />
       </Router>
     </MyContextProvider>
   );

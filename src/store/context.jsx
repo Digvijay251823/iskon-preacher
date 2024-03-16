@@ -6,6 +6,14 @@ const Authentication = {
   isAuthenticated: false,
 };
 
+const toastInitialState = {
+  toast: {
+    type: "LOADING",
+    message: "",
+    isVisible: false,
+  },
+};
+
 const ThemeStateInitial = {
   Theme: "light",
 };
@@ -32,6 +40,31 @@ const ThemeReducer = (state, action) => {
       return state;
   }
 };
+const ToastReducer = (state, action) => {
+  switch (action.type) {
+    case "SHOW_TOAST":
+      return {
+        ...state,
+        toast: {
+          ...state.toast,
+          type: action.payload.type,
+          message: action.payload.message,
+          isVisible: true,
+        },
+      };
+    case "HIDE_TOAST":
+      return {
+        ...state,
+        toast: {
+          ...state.toast,
+          type: "LOADING",
+          isVisible: false,
+        },
+      };
+    default:
+      return state;
+  }
+};
 
 // Combine reducers
 const combineReducers = (reducers) => {
@@ -49,6 +82,7 @@ const combineReducers = (reducers) => {
 const rootReducer = combineReducers({
   Authentication: AuthenticationReducer,
   Theme: ThemeReducer,
+  Toast: ToastReducer,
 });
 
 // Create context
@@ -59,6 +93,7 @@ export const MyContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(rootReducer, {
     Authentication: Authentication,
     Theme: ThemeStateInitial,
+    Toast: toastInitialState,
   });
 
   return (

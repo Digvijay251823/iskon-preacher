@@ -3,34 +3,154 @@ import { useLocation } from "react-router-dom";
 import { useMyContext } from "../store/context";
 import { MdKeyboardArrowDown } from "react-icons/md";
 
-const prabhus = [
-  "Krishna Das & Radha DD",
-  "Nityananda Das & Gaurangi DD",
-  "Balram Das & Krishna Sakhi DD",
-  "Ram Das &	Prem Bhakti DD",
-];
-const matajis = ["Anupam Gopika"];
+const SERVER_ENDOPOINT =
+  "http://counsellor-portal-env.eba-mbtr2c2r.ap-south-1.elasticbeanstalk.com/counsellor-portal";
 
+const prabhus = [
+  {
+    id: 1,
+    name: "Krishna Das",
+    spouseName: " Radha DD",
+    contactNumber: "7620535741",
+    email: "rasamritagaur.rns@gmail.com",
+  },
+  {
+    id: 2,
+    name: "Nityananda Das",
+    spouseName: " Gaurangi DD",
+    contactNumber: "7620535741",
+    email: "rasamritagaur.rns@gmail.com",
+  },
+  {
+    id: 3,
+    name: "Balram Das",
+    spouseName: " Krishna Sakhi DD",
+    contactNumber: "7620535741",
+    email: "rasamritagaur.rns@gmail.com",
+  },
+  {
+    id: 4,
+    name: "Ram Das",
+    spouseName: "	Prem Bhakti DD",
+    contactNumber: "7620535741",
+    email: "rasamritagaur.rns@gmail.com",
+  },
+];
 const sevas = [
-  "Deity Worship Seva",
-  "Other Seva",
-  "Mangal Arthi",
-  "Morning Japa",
-  "Guru Puja",
-  "SB Class",
+  "mangalAarti",
+  "morningJapa",
+  "sbClass",
+  "deityWorshipSeva",
+  "guruPuja",
+  "otherSeva",
 ];
 
 function Seva() {
-  const [isLoading, setIsLoading] = useState(false);
+  const [dataArr, setDataArr] = useState([]);
+  const [SelectedCounselor, setSelectedCounselor] = useState({});
+  const [selectedSevas, setSelectedSevas] = useState([]);
 
-  const [checkedItems, setCheckedItem] = useState([]);
+  const [formData, setFormData] = useState({
+    mangalAarti: false,
+    morningJapa: false,
+    sbClass: false,
+    deityWorshipSeva: false,
+    otherSeva: false,
+    guruPuja: false,
+    location: "NVCC_TEMPLE",
+  });
+  const { state, dispatch } = useMyContext();
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await fetch(`${SERVER_ENDOPOINT}/counsellor/`);
+        if (response.ok) {
+          const responseData = await response.json();
+          setDataArr(responseData.content);
+        } else {
+          const errorData = await response.json();
+          dispatch({
+            type: "SHOW_TOAST",
+            payload: { type: "ERROR", message: errorData.message },
+          });
+        }
+      } catch (error) {
+        dispatch({
+          type: "SHOW_TOAST",
+          payload: { type: "ERROR", message: error.message },
+        });
+      }
+    })();
+  }, [dispatch]);
 
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const { state } = useMyContext();
-  const { pathname } = useLocation();
+  useEffect(() => {
+    const date = new Date().toISOString();
+    setFormData((prevData) => ({
+      ...prevData,
+      counsellorId: SelectedCounselor.id,
+      spouseName: SelectedCounselor.name,
+      programDate: date,
+    }));
+  }, [SelectedCounselor]);
 
   const handleChange = (e) => {
-    console.log({ [e.target.name]: e.target.value });
+    const { name, checked, value } = e.target;
+
+    if (checked) {
+      setSelectedSevas([...selectedSevas, value]);
+    } else {
+      setSelectedSevas(selectedSevas.filter((item) => item !== value));
+    }
+    setFormData((prev) => ({
+      ...prev,
+      [name]: checked,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const header = new Headers();
+    header.append("Content-Type", "application/json");
+    try {
+      const response = await fetch(
+        `${SERVER_ENDOPOINT}/counsellor-morning-program/record`,
+        { method: "POST", headers: header, body: JSON.stringify(formData) }
+      );
+      if (response.ok) {
+        const responseData = await response.json();
+        dispatch({
+          type: "SHOW_TOAST",
+          payload: { type: "SUCCESS", message: responseData.message },
+        });
+      } else {
+        if (response.status === 409) {
+          dispatch({
+            type: "SHOW_TOAST",
+            payload: {
+              type: "ERROR",
+              message: "You have already filled the form",
+            },
+          });
+          return;
+        }
+        const errorData = await response.json();
+        dispatch({
+          type: "SHOW_TOAST",
+          payload: {
+            type: "ERROR",
+            message: errorData.message || errorData.title,
+          },
+        });
+      }
+    } catch (error) {
+      dispatch({
+        type: "SHOW_TOAST",
+        payload: {
+          type: "ERROR",
+          message: error.message || "Unexpected error happend",
+        },
+      });
+    }
   };
 
   return (
@@ -45,12 +165,13 @@ function Seva() {
           />
         </div>
         <div className="lg:ml-[42vw]">
-          <div
+          <form
             className={`mt-5 px-5 border rounded-3xl drop-shadow-lg ${
               state.Theme.Theme === "light"
                 ? "bg-white border-gray-300"
                 : "border-stone-700 bg-stone-900"
             }`}
+            onSubmit={handleSubmit}
           >
             <div>
               <h1 className="font-bold text-xl pt-8 px-4">
@@ -64,8 +185,8 @@ function Seva() {
               <div className="flex flex-col gap-2 w-full">
                 <label className="font-semibold ">Select Name</label>
                 <MenuIconAndDropDown
-                  DataArr={prabhus}
-                  setSelected={(value) => console.log(value)}
+                  DataArr={dataArr}
+                  setSelected={(value) => setSelectedCounselor(value)}
                 />
               </div>
               <div className="flex flex-col gap-2 w-full mt-5">
@@ -73,13 +194,18 @@ function Seva() {
                 <MenuIconAndDropDown
                   position={"up"}
                   DataArr={[
-                    "NVCC Temple",
-                    "Hinjewadi Center",
-                    "Mayapur Temple",
-                    "Camp Temple",
+                    { name: "NVCC_TEMPLE" },
+                    { name: "HINJEWADI_CENTER" },
+                    { name: "MAYAPUR_TEMPLE" },
+                    { name: "CAMP_TEMPLE" },
                   ]}
                   defaultVal={"NVCC Temple"}
-                  setSelected={(value) => console.log(value)}
+                  setSelected={(value) => {
+                    setFormData((prev) => ({
+                      ...prev,
+                      location: value.name,
+                    }));
+                  }}
                 />
               </div>
             </div>
@@ -95,6 +221,7 @@ function Seva() {
                       id={item}
                       value={item}
                       className="h-5 w-5"
+                      name={item}
                       onChange={handleChange}
                     />
                     <label htmlFor={item} className="font-semibold text-lg">
@@ -104,21 +231,28 @@ function Seva() {
                 ))}
               </div>
             </div>
-
             <div className="flex justify-center w-full ">
               <button
-                disabled={pathname !== `/sadhana`}
+                disabled={Object.keys(SelectedCounselor).length === 0}
                 className={`px-4 py-1.5 text-lg rounded-xl border my-5 w-full ${
                   state.Theme.Theme === "light"
-                    ? "border-blue-800 bg-blue-500 text-white"
-                    : "border-stone-700 bg-blue-900"
+                    ? `${
+                        Object.keys(SelectedCounselor).length === 0
+                          ? "border-blue-300 bg-blue-300 text-blue-200"
+                          : "border-blue-800 bg-blue-500 text-white"
+                      }`
+                    : `${
+                        Object.keys(SelectedCounselor).length === 0
+                          ? "border-stone-900 bg-blue-950 text-stone-800"
+                          : "border-stone-700 bg-blue-900"
+                      }`
                 } `}
                 type="submit"
               >
                 Submit
               </button>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>
@@ -221,19 +355,19 @@ function MenuIconAndDropDown({ setSelected, DataArr, defaultVal, position }) {
               <li
                 key={index}
                 onClick={() => {
-                  setSelectedOption(item);
+                  setSelectedOption(item.name);
                   setSelected(item);
                   toggleSelection(false);
                 }}
                 className={`px-2 py-1.5 rounded-lg ${
-                  item === selectedOption && "bg-blue-300"
+                  item.name === selectedOption && "bg-blue-300"
                 } ${
                   state.Theme.Theme === "light"
                     ? "hover:bg-gray-100 "
                     : "hover:bg-stone-700"
                 }`}
               >
-                {item}
+                {item.name}
               </li>
             ))}
           </ul>
